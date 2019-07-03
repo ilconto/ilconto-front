@@ -1,7 +1,7 @@
 <template>
   <div>
-    # implement board creation form here
     <router-link to="login">Login to existing board</router-link>
+    <p># implement board creation form here</p>
   </div>
 </template>
 

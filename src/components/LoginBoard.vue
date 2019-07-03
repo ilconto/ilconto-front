@@ -1,7 +1,7 @@
 <template>
   <div>
-    # implement login here
     <router-link to="create">Create a new board</router-link>
+    <p># implement login here</p>
   </div>
 </template>
 
