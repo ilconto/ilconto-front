@@ -12,7 +12,9 @@
       <b-button type="is-primary">Login</b-button>
     </p>
     <p id="back">
-      <router-link :to="{name:'root'}">Back</router-link>
+      <router-link :to="{name:'root'}">
+        <b-button type="is-info">Back</b-button>
+      </router-link>
     </p>
   </div>
 </template>
