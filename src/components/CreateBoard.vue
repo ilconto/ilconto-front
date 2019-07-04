@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="login">Login to existing board</router-link>
+    <router-link :to="{name:'root'}">Back</router-link>
     <p># implement board creation form here</p>
   </div>
 </template>

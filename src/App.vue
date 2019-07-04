@@ -15,7 +15,7 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
 #app {
-  font-family: "Permanent Marker", cursive;
+  /* font-family: "Permanent Marker", cursive; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

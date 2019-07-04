@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CreateBoard from '@/components/CreateBoard'
 import LoginBoard from '@/components/LoginBoard'
+import LandingPage from '@/components/LandingPage'
 
 
 Vue.use(VueRouter)
@@ -9,16 +10,18 @@ Vue.use(VueRouter)
 export default new VueRouter({
     routes: [{
             path: "/create",
-            name: "CreateBoard",
+            name: "create",
             component: CreateBoard
         },
         {
             path: "/login",
-            name: "Login",
+            name: "login",
             component: LoginBoard,
-            props: {
-                msg: 'bite'
-            }
+        },
+        {
+            path: "/",
+            name: "root",
+            component: LandingPage,
         }
     ]
 })
