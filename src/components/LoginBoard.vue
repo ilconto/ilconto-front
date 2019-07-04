@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title is-1">Login to a new board here</h1>
+    <h1 class="title is-1">Login to an existing board here</h1>
 
     <b-field label="Board ID">
       <b-input v-model="boadId" placeholder="you board unique id"></b-input>
