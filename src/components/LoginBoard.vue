@@ -28,10 +28,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-#back {
-  margin-top: 2em;
-}
+<style lang="scss" >
+// button {
+//   margin: 1em;
+// }
 </style>
 
 

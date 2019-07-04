@@ -21,9 +21,8 @@ export default {
 </script>
 
 
-<style lang="sass" scoped>
-.boardHeader 
-    margin-bottom: 3em; 
-
-    
+<style lang="scss" scoped>
+.boardHeader {
+  margin-bottom: 3em;
+}
 </style>
