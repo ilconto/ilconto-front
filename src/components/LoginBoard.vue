@@ -1,21 +1,37 @@
 <template>
   <div>
-    <router-link to="create">Create a new board</router-link>
-    <p># implement login here</p>
+    <h1 class="title is-1">Login to a new board here</h1>
+
+    <b-field label="Board ID">
+      <b-input v-model="boadId" placeholder="you board unique id"></b-input>
+    </b-field>
+    <b-field label="Board Password">
+      <b-input v-model="boardPassword" placeholder="superSafePass" type="password"></b-input>
+    </b-field>
+    <p>
+      <b-button type="is-primary">Login</b-button>
+    </p>
+    <p id="back">
+      <router-link :to="{name:'root'}">Back</router-link>
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoginBoard",
   data() {
-    return {};
+    return {
+      boadId: "",
+      boardPassword: ""
+    };
   }
 };
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="scss" scoped>
+#back {
+  margin-top: 2em;
+}
 </style>
 
 
