@@ -31,9 +31,6 @@ export default {
 </script>
 
 <style lang="scss" >
-// button {
-//   margin: 1em;
-// }
 </style>
 
 
