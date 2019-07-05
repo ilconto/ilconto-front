@@ -27,5 +27,9 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .centered-constrained {
+    max-width: 15cm;
+    margin: 0 auto;
+  }
 }
 </style>
