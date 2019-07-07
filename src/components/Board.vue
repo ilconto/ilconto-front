@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container boardHeader">
-      <!-- <h1 class="title">{{boardName}}</h1> -->
+      <h1 class="title">{{board.title}}</h1>
     </div>
 
     <div>{{board}}</div>
@@ -10,6 +10,7 @@
 
 <script>
 import { board } from "../mock";
+import axios from "axios";
 
 export default {
   data() {
@@ -24,6 +25,16 @@ export default {
   },
   methods: {
     fetchData() {
+      var body = { id: this.$route.params.id };
+      axios
+        .get(process.env.VUE_APP_ROOT_API + "/board")
+        .then(response => {
+          console.log(response);
+          this.board = response.data;
+        })
+        .catch(e => {
+          console.log(e);
+        });
       this.error = this.post = null;
       this.loading = true;
       // replace `getPost` with your data fetching util / API wrapper

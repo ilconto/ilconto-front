@@ -4,7 +4,7 @@
       <h1 class="title is-1">Login</h1>
 
       <b-field label="Email">
-        <b-input v-model="email" placeholder="johndoe@example.com"></b-input>
+        <b-input v-model="username" placeholder="johndoe"></b-input>
       </b-field>
       <b-field label="Password">
         <b-input v-model="password" placeholder="password" type="password"></b-input>
@@ -22,21 +22,32 @@
 </template>
 
 <script>
-import { userBoards } from "../mock";
+import axios from "axios";
 
 export default {
   data() {
     return {
-      email: "",
+      username: "",
       password: ""
     };
   },
   methods: {
     login() {
-      this.$session.start();
-      this.$session.set("userId", this.email);
-      this.$session.set("user", { name: "Paul", boards: userBoards });
-      this.$router.push("/profile");
+      var body = {
+        username: this.username,
+        password: this.password
+      };
+      axios
+        .post(process.env.VUE_APP_ROOT_API + "/login", { body: body })
+        .then(response => {
+          console.log(response.data);
+          this.$session.set("user", response.data.user);
+          this.$router.push("/profile");
+        })
+        .catch(e => {
+          console.log(e);
+          this.$router.push("/");
+        });
     }
   }
 };
