@@ -37,10 +37,6 @@ export default {
         .catch(e => {
           console.log(e);
         });
-      // this.error = this.post = null;
-      // this.loading = true;
-      // // replace `getPost` with your data fetching util / API wrapper
-      // this.board = board;
     }
   }
 };
