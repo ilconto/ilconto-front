@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import BoardMember from "./BoardMember";
 import { board } from "../mock";
 
 export default {
