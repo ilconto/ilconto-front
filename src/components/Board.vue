@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container boardHeader">
-      <h1 class="title">{{board.title}}</h1>
+      <h1 class="title">{{boardName}}</h1>
     </div>
 
     <div>{{board}}</div>
@@ -17,28 +17,30 @@ export default {
     return {
       loading: false,
       board: null,
+      boardName: "",
       error: null
     };
   },
   created() {
-    this.fetchData();
+    this.fetchBoardData();
   },
   methods: {
-    fetchData() {
+    fetchBoardData() {
       var body = { id: this.$route.params.id };
       axios
         .get(process.env.VUE_APP_ROOT_API + "/board")
         .then(response => {
           console.log(response);
           this.board = response.data;
+          this.boardName = this.board.title;
         })
         .catch(e => {
           console.log(e);
         });
-      this.error = this.post = null;
-      this.loading = true;
-      // replace `getPost` with your data fetching util / API wrapper
-      this.board = board;
+      // this.error = this.post = null;
+      // this.loading = true;
+      // // replace `getPost` with your data fetching util / API wrapper
+      // this.board = board;
     }
   }
 };
