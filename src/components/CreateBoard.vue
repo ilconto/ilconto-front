@@ -8,10 +8,6 @@
           <b-input v-model="boardName" placeholder="you board name"></b-input>
         </b-field>
 
-        <b-field label="Board Password">
-          <b-input v-model="boardPassword" placeholder="superSafePass" type="password"></b-input>
-        </b-field>
-
         <b-field label="Members">
           <b-input v-model="emailToAdd" placeholder="example@domain.com" type="email"></b-input>
         </b-field>
@@ -55,7 +51,6 @@ export default {
     addToMemberList: function() {
       this.members.push(this.emailToAdd);
       this.emailToAdd = "";
-      console.log(this.members);
     }
   }
 };
