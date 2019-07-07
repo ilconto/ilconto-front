@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <div class="centered-constrained">
-      <h1 class="title is-1">Login to an existing board here</h1>
+      <h1 class="title is-1">Create an account</h1>
 
-      <b-field label="Board ID">
-        <b-input v-model="boadId" placeholder="you board unique id"></b-input>
+      <b-field label="Email">
+        <b-input v-model="email" placeholder="johndoe@example.com"></b-input>
       </b-field>
-      <b-field label="Board Password">
-        <b-input v-model="boardPassword" placeholder="superSafePass" type="password"></b-input>
+      <b-field label="Password">
+        <b-input v-model="password" placeholder="password" type="password"></b-input>
       </b-field>
       <p>
-        <b-button type="is-primary">Login</b-button>
+        <b-button type="is-primary">Sign in</b-button>
       </p>
       <p id="back">
         <router-link :to="{name:'root'}">
@@ -25,8 +25,8 @@
 export default {
   data() {
     return {
-      boadId: "",
-      boardPassword: ""
+      email: "",
+      password: ""
     };
   }
 };
