@@ -3,7 +3,7 @@
     <div class="centered-constrained">
       <h1 class="title is-1">Login</h1>
 
-      <b-field label="Email">
+      <b-field label="Username">
         <b-input v-model="username" placeholder="johndoe"></b-input>
       </b-field>
       <b-field label="Password">
