@@ -1,25 +1,37 @@
 <template>
-  <div>
-    <div class="container boardHeader">
-      <h1 class="title">{{boardName}}</h1>
+  <div v-if="loading">
+    <h1>Loading...</h1>
+  </div>
+  <div v-else class="centered-constrained">
+    <div class="board-header">
+      <h1 class="title is-1">{{this.board.title}}</h1>
     </div>
 
-    <div>{{board}}</div>
+    <ul>
+      <li v-for="member in board.members" v-bind:key="member.id">
+        <div>
+          <BoardMember :member="member"></BoardMember>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import { board } from "../mock";
 import axios from "axios";
+import BoardMember from "./BoardMember";
 
 export default {
   data() {
     return {
-      loading: false,
+      loading: true,
       board: null,
       boardName: "",
       error: null
     };
+  },
+  components: {
+    BoardMember
   },
   created() {
     this.fetchBoardData();
@@ -27,12 +39,17 @@ export default {
   methods: {
     fetchBoardData() {
       var body = { id: this.$route.params.id };
-      axios
-        .get(process.env.VUE_APP_ROOT_API + "/board")
+      axios({
+        method: "get",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/board",
+        body: body,
+        headers: { "Content-Type": "application/json" }
+      })
         .then(response => {
-          console.log(response);
           this.board = response.data;
           this.boardName = this.board.title;
+          this.loading = false;
         })
         .catch(e => {
           console.log(e);
@@ -44,7 +61,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.boardHeader {
+.board-header {
   margin-bottom: 3em;
 }
 </style>

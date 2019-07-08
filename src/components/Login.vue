@@ -3,7 +3,7 @@
     <div class="centered-constrained">
       <h1 class="title is-1">Login</h1>
 
-      <b-field label="Email">
+      <b-field label="Username">
         <b-input v-model="username" placeholder="johndoe"></b-input>
       </b-field>
       <b-field label="Password">
@@ -37,16 +37,33 @@ export default {
         username: this.username,
         password: this.password
       };
-      axios
-        .post(process.env.VUE_APP_ROOT_API + "/login", { body: body })
+      axios({
+        method: "post",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/login",
+        body: body,
+        headers: { "Content-Type": "application/json" }
+      })
         .then(response => {
-          console.log(response.data);
           this.$session.set("user", response.data.user);
           this.$router.push("/profile");
         })
         .catch(e => {
           console.log(e);
-          this.$router.push("/");
+          this.$snackbar.open({
+            message: "Could not log you in. Please try again",
+            type: "is-warning",
+            position: "is-bottom",
+            actionText: "create an account",
+            queue: false,
+            duration: 5000,
+            onAction: () => {
+              this.$router.push("/signin");
+            }
+          });
+
+          this.username = "";
+          this.password = "";
         });
     }
   }

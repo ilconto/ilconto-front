@@ -3,8 +3,8 @@
     <div class="centered-constrained">
       <h1 class="title is-1">Create an account</h1>
 
-      <b-field label="Email">
-        <b-input v-model="email" placeholder="johndoe@example.com"></b-input>
+      <b-field label="Username">
+        <b-input v-model="username" placeholder="johndoe"></b-input>
       </b-field>
       <b-field label="Password">
         <b-input v-model="password" placeholder="password" type="password"></b-input>
@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      email: "",
+      username: "",
       password: ""
     };
   }
