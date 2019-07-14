@@ -14,6 +14,11 @@
         </div>
       </li>
     </ul>
+    <p id="back">
+      <router-link :to="{name:'root'}">
+        <b-button type="is-info">Back</b-button>
+      </router-link>
+    </p>
   </div>
 </template>
 

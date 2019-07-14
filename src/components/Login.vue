@@ -37,14 +37,19 @@ export default {
         username: this.username,
         password: this.password
       };
+      var bodyFormData = new FormData();
+      bodyFormData.set("username", this.username);
+      bodyFormData.set("password", this.password);
       axios({
         method: "post",
         baseURL: process.env.VUE_APP_ROOT_API,
         url: "/login",
-        body: body,
+        data: bodyFormData,
+        json: true,
         headers: { "Content-Type": "application/json" }
       })
         .then(response => {
+          console.log(response.data);
           this.$session.set("user", response.data.user);
           this.$router.push("/profile");
         })
