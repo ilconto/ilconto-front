@@ -15,6 +15,11 @@
         </div>
       </li>
     </ul>
+    <p id="back">
+      <router-link :to="{name:'user'}">
+        <b-button type="is-info">Back to my boards</b-button>
+      </router-link>
+    </p>
   </div>
 </template>
 
