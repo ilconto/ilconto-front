@@ -2,6 +2,7 @@
   <div v-if="loading">
     <h1>Loading...</h1>
   </div>
+  <div v-else-if="error">Could not load board</div>
   <div v-else class="centered-constrained">
     <div class="board-header">
       <h1 class="title is-1">{{this.board.title}}</h1>
@@ -37,7 +38,7 @@ export default {
       loading: true,
       board: null,
       boardName: "",
-      error: null
+      error: false
     };
   },
   components: {
@@ -63,9 +64,7 @@ export default {
           this.boardName = this.board.title;
           this.loading = false;
         })
-        .catch(e => {
-          console.log(e);
-        });
+        .catch(e => (this.error = true));
     }
   }
 };
