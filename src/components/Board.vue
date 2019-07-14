@@ -8,7 +8,7 @@
     </div>
 
     <ul>
-      <li v-for="member in board.members" v-bind:key="member.id">
+      <li v-for="member in members" v-bind:key="member.id">
         <div>
           <BoardMember :member="member"></BoardMember>
         </div>
@@ -20,6 +20,16 @@
 <script>
 import axios from "axios";
 import BoardMember from "./BoardMember";
+
+function compare(a, b) {
+  if (a.last_time < b.last_time) {
+    return 1;
+  }
+  if (a.last_time > b.last_time) {
+    return -1;
+  }
+  return 0;
+}
 
 export default {
   data() {
@@ -48,6 +58,8 @@ export default {
       })
         .then(response => {
           this.board = response.data;
+          this.members = [...response.data.members];
+          this.members.sort(compare);
           this.boardName = this.board.title;
           this.loading = false;
         })
