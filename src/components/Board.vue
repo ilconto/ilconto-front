@@ -11,7 +11,7 @@
     <ul>
       <li v-for="member in members" v-bind:key="member.id">
         <div>
-          <BoardMember :member="member"></BoardMember>
+          <BoardMember :member="member" :boardID="boardID"></BoardMember>
         </div>
       </li>
     </ul>
@@ -40,6 +40,8 @@ function compare(a, b) {
 export default {
   data() {
     return {
+      members: undefined,
+      boardID: null,
       loading: true,
       board: null,
       boardName: "",
@@ -67,6 +69,7 @@ export default {
           this.members = [...response.data.members];
           this.members.sort(compare);
           this.boardName = this.board.title;
+          this.boardID = this.board.id;
           this.loading = false;
         })
         .catch(e => (this.error = true));
