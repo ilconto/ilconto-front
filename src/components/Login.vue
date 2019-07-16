@@ -1,7 +1,9 @@
 <template>
-  <div class="container">
-    <div class="centered-constrained">
-      <h1 class="title is-1">Login</h1>
+  <div class="container login-page">
+    <div>
+      <div class="page-header">
+        <h1 class="title is-1">Login</h1>
+      </div>
 
       <b-field label="Username">
         <b-input v-model="username" placeholder="johndoe"></b-input>
@@ -9,9 +11,12 @@
       <b-field label="Password">
         <b-input v-model="password" placeholder="password" type="password"></b-input>
       </b-field>
+    </div>
+    <div class="btn-group container">
       <p>
         <b-button @click="login" class="is-primary">Login</b-button>
       </p>
+      <p id="or" class="marker">Or</p>
       <p id="back">
         <router-link :to="{name:'root'}">
           <b-button type="is-info">Back</b-button>
@@ -20,6 +25,12 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.login-page {
+  height: 100%;
+}
+</style>
 
 <script>
 import axios from "axios";
@@ -75,10 +86,6 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-label {
-  color: white !important;
-}
-</style>
+
 
 

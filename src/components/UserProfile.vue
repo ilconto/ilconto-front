@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1 class="title is-1">Welcome {{username}}</h1>
+    <div class="page-header">
+      <h1 class="title is-1">Welcome {{username}}</h1>
+    </div>
+
     <h2 class="title is-3">Your boards:</h2>
     <ul>
       <li v-for="board in boards" v-bind:key="board.id">
@@ -14,13 +17,24 @@
         </div>
       </li>
     </ul>
-    <p id="back">
-      <router-link :to="{name:'root'}">
-        <b-button type="is-info">Back</b-button>
-      </router-link>
-    </p>
+    <div class="btn-group container">
+      <p id="back">
+        <router-link :to="{name:'root'}">
+          <b-button class="is-primary">Back</b-button>
+        </router-link>
+      </p>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.level {
+  button {
+    width: 2cm;
+  }
+}
+</style>
+
 
 <script>
 export default {
