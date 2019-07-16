@@ -7,12 +7,13 @@
         <b-button type="is-primary">Login</b-button>
       </router-link>
     </p>
-    <p id="or">Or</p>
-    <p>
-      <router-link :to="{name: 'signin'}">
-        <b-button type="is-primary">Sign In</b-button>
-      </router-link>
-    </p>
+      <p id="or" class="marker">Or</p>
+      <p>
+        <router-link :to="{name: 'signin'}">
+          <b-button type="is-primary">Sign In</b-button>
+        </router-link>
+      </p>
+    </div>
   </div>
 </template>
 
