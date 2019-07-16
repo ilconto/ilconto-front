@@ -76,6 +76,9 @@ export default {
 </script>
 
 <style lang="scss" >
+label {
+  color: white !important;
+}
 </style>
 
 
