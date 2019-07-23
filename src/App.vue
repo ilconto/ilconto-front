@@ -71,6 +71,7 @@ export default {
   .page-header {
     @media (min-width: 1000px) {
       margin-top: 5em;
+      margin-bottom: 2em;
     }
     @media (max-width: 1000px) {
       margin-top: 2em;
