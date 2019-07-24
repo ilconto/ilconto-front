@@ -1,23 +1,26 @@
 <template>
-  <div>
+  <div class="container" style="height: 100%">
     <div class="page-header">
       <h1 class="title is-1">Welcome {{username}}</h1>
     </div>
 
     <h2 class="title is-3">Your boards:</h2>
-    <ul>
-      <li v-for="board in boards" v-bind:key="board.id">
-        <div class="level">
-          <span class="level-item">{{ board.title }}</span>
-          <span class="level-item">
-            <router-link :to="{name: 'board', params: {id: board.id}}">
-              <b-button type="is-primary">View</b-button>
-            </router-link>
-          </span>
-        </div>
-      </li>
-    </ul>
-    <div class="btn-group container">
+    <div style="overflow: auto; height: 300px">
+      <ul>
+        <li v-for="board in boards" v-bind:key="board.id">
+          <div class="level">
+            <span class="level-item">{{ board.title }}</span>
+            <span class="level-item">
+              <router-link :to="{name: 'board', params: {id: board.id}}">
+                <b-button type="is-primary" style>View</b-button>
+              </router-link>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="btn-group">
       <p id="back">
         <router-link :to="{name:'root'}">
           <b-button class="is-primary">Back</b-button>
@@ -29,8 +32,8 @@
 
 <style lang="scss" scoped>
 .level {
-  button {
-    width: 2cm;
+  a {
+    width: 100%;
   }
 }
 </style>
