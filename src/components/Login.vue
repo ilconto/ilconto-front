@@ -51,9 +51,10 @@ export default {
       var bodyFormData = new FormData();
       bodyFormData.set("username", this.username);
       bodyFormData.set("password", this.password);
+      console.log(process.env.VUE_MOCK_APP_ROOT_API);
       axios({
         method: "post",
-        baseURL: process.env.VUE_APP_ROOT_API,
+        baseURL: "http://localhost:3001/api/v1",
         url: "/login",
         data: bodyFormData,
         json: true,

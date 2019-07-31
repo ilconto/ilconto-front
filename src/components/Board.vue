@@ -7,7 +7,6 @@
     <div class="board-header">
       <h1 class="title is-1">{{this.board.title}}</h1>
     </div>
-
     <ul>
       <li v-for="member in members" v-bind:key="member.id">
         <div>
@@ -15,6 +14,7 @@
         </div>
       </li>
     </ul>
+
     <p id="back">
       <router-link :to="{name:'user'}">
         <b-button type="is-info">Back to my boards</b-button>
@@ -56,12 +56,12 @@ export default {
   },
   methods: {
     fetchBoardData() {
-      var body = { id: this.$route.params.id };
+      var boardId = this.$route.params.id;
       axios({
         method: "get",
-        baseURL: process.env.VUE_APP_ROOT_API,
-        url: "/board",
-        body: body,
+        baseURL: "http://127.0.0.1:8000/",
+
+        url: `/boards/${boardId}`,
         headers: { "Content-Type": "application/json" }
       })
         .then(response => {
@@ -71,6 +71,7 @@ export default {
           this.boardName = this.board.title;
           this.boardID = this.board.id;
           this.loading = false;
+          console.log(response);
         })
         .catch(e => (this.error = true));
     }

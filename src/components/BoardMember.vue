@@ -51,7 +51,7 @@ export default {
           this.score = computeScore(Date.now() / 1000);
           axios({
             method: "patch",
-            baseURL: process.env.VUE_APP_ROOT_API,
+            baseURL: process.env.MOCK_APP_ROOT_API,
             url: `/boards/${boardID}/reset/${this.$session.get("user").id}`
           })
             .then(response => {})
