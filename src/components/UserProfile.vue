@@ -40,6 +40,8 @@
 
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -48,9 +50,22 @@ export default {
     };
   },
   created() {
-    this.boards = this.$session.get("user").boards;
-    this.username = this.$session.get("user").username;
+    axios({
+      method: "get",
       baseURL: process.env.VUE_APP_ROOT_API,
+      url: "/profile",
+      json: true,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${this.$session.get("token")}`
+      }
+    })
+      .then(response => {
+        this.boards = response.data.boards;
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 };
 </script>
