@@ -50,6 +50,7 @@ export default {
   created() {
     this.boards = this.$session.get("user").boards;
     this.username = this.$session.get("user").username;
+      baseURL: process.env.VUE_APP_ROOT_API,
   }
 };
 </script>

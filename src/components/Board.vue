@@ -59,7 +59,7 @@ export default {
       var boardId = this.$route.params.id;
       axios({
         method: "get",
-        baseURL: "http://127.0.0.1:8000/",
+        baseURL: process.env.VUE_APP_ROOT_API,
 
         url: `/boards/${boardId}`,
         headers: { "Content-Type": "application/json" }

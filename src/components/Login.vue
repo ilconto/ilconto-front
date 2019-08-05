@@ -54,8 +54,8 @@ export default {
       console.log(process.env.VUE_MOCK_APP_ROOT_API);
       axios({
         method: "post",
-        baseURL: "http://localhost:3001/api/v1",
-        url: "/login",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/rest-auth/login/",
         data: bodyFormData,
         json: true,
         headers: { "Content-Type": "application/json" }
