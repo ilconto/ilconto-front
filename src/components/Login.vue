@@ -8,6 +8,9 @@
       <b-field label="Username">
         <b-input v-model="username" placeholder="johndoe"></b-input>
       </b-field>
+      <b-field label="Email">
+        <b-input v-model="email" placeholder="email"></b-input>
+      </b-field>
       <b-field label="Password">
         <b-input v-model="password" placeholder="password" type="password"></b-input>
       </b-field>
@@ -39,6 +42,7 @@ export default {
   data() {
     return {
       username: "",
+      email: "",
       password: ""
     };
   },
@@ -46,10 +50,12 @@ export default {
     login() {
       var body = {
         username: this.username,
+        email: this.email,
         password: this.password
       };
       var bodyFormData = new FormData();
       bodyFormData.set("username", this.username);
+      bodyFormData.set("email", this.email);
       bodyFormData.set("password", this.password);
       console.log(process.env.VUE_MOCK_APP_ROOT_API);
       axios({
@@ -62,8 +68,11 @@ export default {
       })
         .then(response => {
           console.log(response.data);
-          this.$session.set("user", response.data.user);
+          this.$session.set("token", response.data.key);
+          this.$session.set("email", this.email);
+          this.$session.set("username", this.username);
           this.$router.push("/profile");
+          console.log(this.$session.get("token"));
         })
         .catch(e => {
           console.log(e);
