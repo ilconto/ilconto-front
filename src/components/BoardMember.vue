@@ -1,7 +1,7 @@
 <template>
   <span>
     <div class="main level has-background-primary">
-      <span class="level-item">{{member.user.username}}</span>
+      <span class="level-item">{{member.username}}</span>
       <span v-if="isOwner">
         <b-button @click="confirmReset" type="is-danger">reset my score</b-button>
       </span>
@@ -13,9 +13,9 @@
 <script>
 import axios from "axios";
 
-function computeScore(inputIsoDate) {
+function computeScore(inputDate) {
   var now = Date.now();
-  var deltaSeconds = now - Date.parse(inputIsoDate);
+  var deltaSeconds = now - inputDate;
   return Math.round(deltaSeconds / (1000 * 60 * 60 * 24));
 }
 
@@ -59,10 +59,10 @@ export default {
     }
   },
   mounted() {
-    if (this.member.name == this.$session.get("user").username) {
+    if (this.member.username == this.$session.get("username")) {
       this.isOwner = true;
     }
-    this.score = computeScore(this.member.last_reset);
+    this.score = computeScore(this.member.score);
   }
 };
 </script>
