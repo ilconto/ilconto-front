@@ -1,91 +1,77 @@
 <template>
-  <div class="container login-page">
-    <div>
-      <div class="page-header">
-        <h1 class="title is-1">Login</h1>
+  <div class="container" id="login-page">
+    <Header/>
+    <form action="" id="login-form">
+      <div class="field-container">
+        <p>Email address</p>
+        <input type="email" name="email" id="login-email-field" class="login-field" placeholder="example@email.com">
       </div>
-
-      <b-field label="Username">
-        <b-input v-model="username" placeholder="johndoe"></b-input>
-      </b-field>
-      <b-field label="Password">
-        <b-input v-model="password" placeholder="password" type="password"></b-input>
-      </b-field>
-    </div>
-    <div class="btn-group container">
-      <p>
-        <b-button @click="login" class="is-primary">Login</b-button>
-      </p>
-      <p id="or" class="marker">Or</p>
-      <p id="back">
-        <router-link :to="{name:'root'}">
-          <b-button type="is-info">Back</b-button>
-        </router-link>
-      </p>
-    </div>
+      <div class="field-container">
+        <p>Password</p>
+        <input type="password" name="password" id="login-password-field" class="login-field" placeholder="your password..">
+      </div>
+      <button class="submit-button button is-size-4">Log in</button>
+    </form>
+    <p class="register-message">
+      You can also <router-link to="register">register</router-link>
+    </p>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.login-page {
-  height: 100%;
-}
-</style>
-
 <script>
-import axios from "axios";
+import Header from './Header'
 
 export default {
-  data() {
-    return {
-      username: "",
-      password: ""
-    };
-  },
-  methods: {
-    login() {
-      var body = {
-        username: this.username,
-        password: this.password
-      };
-      var bodyFormData = new FormData();
-      bodyFormData.set("username", this.username);
-      bodyFormData.set("password", this.password);
-      axios({
-        method: "post",
-        baseURL: process.env.VUE_APP_ROOT_API,
-        url: "/login",
-        data: bodyFormData,
-        json: true,
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(response => {
-          console.log(response.data);
-          this.$session.set("user", response.data.user);
-          this.$router.push("/profile");
-        })
-        .catch(e => {
-          console.log(e);
-          this.$snackbar.open({
-            message: "Could not log you in. Please try again",
-            type: "is-warning",
-            position: "is-bottom",
-            actionText: "create an account",
-            queue: false,
-            duration: 5000,
-            onAction: () => {
-              this.$router.push("/signin");
-            }
-          });
-
-          this.username = "";
-          this.password = "";
-        });
-    }
+  name: 'login-page',
+  components: {
+    Header
   }
 };
 </script>
 
 
+<style>
 
+#login-form {
+  width: 100%;
+  margin: 1em 0;
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
 
+#login-form input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+.field-container {
+  padding: 0.5em;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+}
+
+.login-field {
+  width: 100%;
+  background: var(--primary-light);
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  color: var(--primary-dark);
+}
+
+.submit-button {
+  margin: auto;
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+}
+
+.register-message {
+  width: 100%;
+  text-align: center;
+}
+
+</style>
