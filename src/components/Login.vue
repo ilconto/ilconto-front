@@ -5,6 +5,7 @@
       <div class="field-container">
         <p>Email address</p>
         <input
+          v-model="email"
           type="email"
           name="email"
           id="login-email-field"
@@ -15,6 +16,7 @@
       <div class="field-container">
         <p>Password</p>
         <input
+          v-model="password"
           type="password"
           name="password"
           id="login-password-field"
@@ -22,7 +24,7 @@
           placeholder="your password.."
         />
       </div>
-      <button class="submit-button button is-size-4">Log in</button>
+      <b-button @click="login" class="submit-button button is-size-4">Log in</b-button>
     </form>
     <p class="register-message">
       You can also
@@ -32,12 +34,60 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./Header";
 
 export default {
   name: "login-page",
   components: {
     Header
+  },
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {
+      var body = {
+        email: this.email,
+        password: this.password
+      };
+      var bodyFormData = new FormData();
+      bodyFormData.set("email", this.email);
+      bodyFormData.set("password", this.password);
+      axios({
+        method: "post",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/rest-auth/login/",
+        data: bodyFormData,
+        json: true,
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => {
+          console.log(response.data);
+          this.$session.set("user", response.data.user);
+          this.$router.push("/profile");
+        })
+        .catch(e => {
+          // console.log(e);
+          this.$snackbar.open({
+            message: "Could not log you in. Please try again",
+            type: "is-warning",
+            position: "is-bottom",
+            actionText: "create an account",
+            queue: false,
+            duration: 5000,
+            onAction: () => {
+              this.$router.push("/signin");
+            }
+          });
+
+          this.email = "";
+          this.password = "";
+        });
+    }
   }
 };
 </script>
