@@ -29,6 +29,15 @@ export default {
     justify-content: center;
   }
 
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .button:hover {
+    color: var(--primary-light);
+    border-color: var(--primary-light) !important;
+  }
+
   // .marker, label {
   //   font-family: "Permanent Marker", cursive;
   //   color: white;

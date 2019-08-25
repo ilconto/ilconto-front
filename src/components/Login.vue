@@ -120,10 +120,6 @@ select:focus {
   font-size: 1.4em;
 }
 
-::placeholder {
-  color: rgba(255, 255, 255, 0.2);
-}
-
 .login-field {
   width: 100%;
   background: transparent;
@@ -141,11 +137,6 @@ select:focus {
   background-color: var(--primary-dark);
   border-color: var(--primary-dark) !important;
   color: var(--primary-light);
-}
-
-.submit-button:hover {
-  color: var(--primary-light);
-  border-color: var(--primary-light) !important;
 }
 
 .register-message {
