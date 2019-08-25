@@ -13,15 +13,15 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:700&display=swap');
-@import url('./assets/variables.css');
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:700&display=swap");
+@import url("./assets/variables.css");
 
 #app {
-  color: var(--primary-dark);
-  background: var(--primary-light);
+  color: var(--primary-light);
+  background: url("assets/background-2.svg");
   min-height: 100vh;
   width: 100vw;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 
   .container {
     display: flex;

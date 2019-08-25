@@ -1,28 +1,41 @@
 <template>
   <div class="container" id="login-page">
-    <Header/>
-    <form action="" id="login-form">
+    <Header />
+    <form action id="login-form">
       <div class="field-container">
         <p>Email address</p>
-        <input type="email" name="email" id="login-email-field" class="login-field" placeholder="example@email.com">
+        <input
+          type="email"
+          name="email"
+          id="login-email-field"
+          class="login-field"
+          placeholder="example@email.com"
+        />
       </div>
       <div class="field-container">
         <p>Password</p>
-        <input type="password" name="password" id="login-password-field" class="login-field" placeholder="your password..">
+        <input
+          type="password"
+          name="password"
+          id="login-password-field"
+          class="login-field"
+          placeholder="your password.."
+        />
       </div>
       <button class="submit-button button is-size-4">Log in</button>
     </form>
     <p class="register-message">
-      You can also <router-link to="register">register</router-link>
+      You can also
+      <router-link to="register">register</router-link>
     </p>
   </div>
 </template>
 
 <script>
-import Header from './Header'
+import Header from "./Header";
 
 export default {
-  name: 'login-page',
+  name: "login-page",
   components: {
     Header
   }
@@ -31,18 +44,19 @@ export default {
 
 
 <style>
-
 #login-form {
   width: 100%;
   margin: 1em 0;
   padding: 1em;
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
 }
 
-#login-form input:focus, textarea:focus, select:focus{
+#login-form input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
@@ -52,12 +66,21 @@ export default {
   margin-bottom: 2em;
 }
 
+.field-container p {
+  font-size: 1.4em;
+}
+
+::placeholder {
+  color: white;
+}
+
 .login-field {
   width: 100%;
-  background: var(--primary-light);
+  background: transparent;
   padding: 1em;
+  padding-left: 0;
   border: 0px solid transparent;
-  border-radius: 5px;
+  border-bottom: 2px solid white;
   box-sizing: border-box;
   font-size: 1.2em;
   color: var(--primary-dark);
@@ -66,12 +89,17 @@ export default {
 .submit-button {
   margin: auto;
   background-color: var(--primary-dark);
+  border-color: var(--primary-dark) !important;
   color: var(--primary-light);
+}
+
+.submit-button:hover {
+  color: var(--primary-light);
+  border-color: var(--primary-light) !important;
 }
 
 .register-message {
   width: 100%;
   text-align: center;
 }
-
 </style>
