@@ -22,6 +22,7 @@ export default {
   min-height: 100vh;
   width: 100vw;
   font-family: "Comfortaa", cursive;
+  overflow: hidden;
 
   .container {
     display: flex;
