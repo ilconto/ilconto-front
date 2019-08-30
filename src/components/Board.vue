@@ -1,111 +1,10 @@
 <template>
   <div class="container">
 
-    <!-- Modals -->
-    <div class="modal" :class="{'is-active': isActiveModal.resetModal}">
-      <div class="modal-background" @click="toggleModal('resetModal')"></div>
-      <div class="modal-content">
-        <article class="message is-warning">
-          <div class="message-header">
-            <p>Do you really want to reset your score to the current time ?</p>
-          </div>
-          <div class="message-body">
-            <div class="modal-actions">
-              <button class="button is-warning">Reset my score !</button>
-              <button class="button is-success" @click="toggleModal('resetModal')">Cancel</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <div class="modal" :class="{'is-active': isActiveModal.editMemberModal}">
-      <div class="modal-background" @click="toggleModal('editMemberModal')"></div>
-      <div class="modal-content">
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Member settings</p>
-          </header>
-          <section class="modal-card-body">
-            <form action="" class="member-settings-form">
-              <div class="field">
-                <label class="label">Member displayed name</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Enter a new name">
-                </div>
-                <p class="help">Enter a new member name</p>
-              </div>
-            </form>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-link">Save changes</button>
-            <button class="button" @click="toggleModal('editMemberModal')">Cancel</button>
-          </footer>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal" :class="{'is-active': isActiveModal.addMemberModal}">
-      <div class="modal-background" @click="toggleModal('addMemberModal')"></div>
-      <div class="modal-content">
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">New member</p>
-          </header>
-          <section class="modal-card-body">
-            <form action="" class="member-settings-form">
-              <div class="field">
-                <label class="label">Member's displayed name</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="Enter a member name">
-                </div>
-                <p class="help">Enter the member's name</p>
-              </div>
-              <div class="field">
-                <label class="label">Member email</label>
-                <div class="control">
-                  <input class="input" type="email" placeholder="Enter the member's email">
-                </div>
-                <p class="help">An email is required to create a board member</p>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <label class="label">Member initial reset</label>
-                  <input class="input" type="date">
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="time">
-                </div>
-                <p class="help">Enter the initial reset time of this the new member</p>
-              </div>
-            </form>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success">Create new member !</button>
-            <button class="button" @click="toggleModal('addMemberModal')">Cancel</button>
-          </footer>
-        </div>
-      </div>
-    </div>
-    
-    <div class="modal" :class="{'is-active': isActiveModal.deleteMemberModal}">
-      <div class="modal-background" @click="toggleModal('deleteMemberModal')"></div>
-      <div class="modal-content">
-        <article class="message is-danger">
-          <div class="message-header">
-            <p>Do you really want to remove this member ?</p>
-          </div>
-          <div class="message-body">
-            <div class="modal-actions">
-              <button class="button is-danger">Remove</button>
-              <button class="button is-success" @click="toggleModal('deleteMemberModal')">Cancel</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
+    <ResetModal ref="resetModal"/>
+    <EditMemberModal ref="editMemberModal"/>
+    <AddMemberModal ref="addMemberModal"/>
+    <DeleteMemberModal ref="deleteMemberModal"/>
 
 
     <!-- Page content -->
@@ -197,6 +96,10 @@ import BoardMember from "./BoardMember"
 import Spinner from './Spinner'
 import Tabs from './Tabs'
 import Tab from './Tab'
+import ResetModal from './modals//ResetModal'
+import AddMemberModal from './modals/AddMemberModal'
+import EditMemberModal from './modals/EditMemberModal'
+import DeleteMemberModal from './modals/DeleteMemberModal'
 
 /* Temporary import, will be removed with connection to the api */
 import data from "../data.json"
@@ -211,12 +114,6 @@ export default {
       board: data,
       activeSettingsTab: null,
       error: false,
-      isActiveModal: {
-        resetModal: false,
-        editMemberModal: false,
-        addMemberModal: false,
-        deleteMemberModal: false,
-      }
     };
   },
   components: {
@@ -224,7 +121,11 @@ export default {
     BoardMember,
     Spinner,
     Tabs,
-    Tab
+    Tab,
+    ResetModal,
+    AddMemberModal,
+    EditMemberModal,
+    DeleteMemberModal,
   },
   created() {
     this.fetchBoardData();
@@ -245,11 +146,7 @@ export default {
       this.activeSettingsTab = this.activeSettingsTab === null ? 'general' : this.activeSettingsTab
     },
     toggleModal(name) {
-      Object.keys(this.isActiveModal).map((modal) => {
-        if(modal === name){
-          this.isActiveModal[modal] = !this.isActiveModal[modal]
-        }
-      })
+     this.$refs[name].toggle()
     }
   }
 };
@@ -329,19 +226,5 @@ export default {
 
 .member-settings-item button:first-of-type {
   margin-right: 5px;
-}
-
-.modal-content {
-  width: 80%;
-}
-
-.modal-card {
-  margin: 0;
-}
-
-.modal-actions {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
 }
 </style>

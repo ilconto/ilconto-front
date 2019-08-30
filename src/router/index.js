@@ -2,8 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 /* Components */
-import Login from '@/components/Login'
-import Register from '@/components/Register'
+import LandingPage from '@/components/LandingPage'
 import Board from '@/components/Board'
 import UserProfile from '@/components/UserProfile'
 
@@ -14,17 +13,21 @@ export default new VueRouter({
     routes: [{
             path: '/',
             name: 'root',
-            component: Login,
-        },
-        {
+            component: LandingPage,
+        },{
             path: '/login',
             name: 'login',
-            component: Login,
-        },
-        {
+            component: LandingPage,
+            props: {
+                action: 'login'
+            }
+        },{
             path: '/register',
             name: 'register',
-            component: Register
+            component: LandingPage,
+            props: {
+                action: 'register'
+            }
         },
         {
             path: '/board',
