@@ -44,22 +44,22 @@
             </form>
           </Tab>
           <Tab name="Manage Members" class="member-manager">
-              <button class="button add-button" @click="toggleModal('addMemberModal')">Add board member</button>
-              <ul>
-                <li v-for="member in board.members" v-bind:key="member.id" class="member-settings-item">
-                  <p>{{member.username}}</p>
-                  <button class="button is-warning is-rounded" @click="toggleModal('editMemberModal')">
-                    <span class="icon is-small">
-                      <i class="fas fa-user-edit"></i>
-                    </span>
-                  </button>
-                  <button class="button is-danger is-rounded" @click="toggleModal('deleteMemberModal')">
-                    <span class="icon is-small">
-                      <i class="fas fa-user-minus"></i>
-                    </span>
-                  </button>
-                </li>
-              </ul>
+            <button class="button add-button" @click="toggleModal('addMemberModal')">Add board member</button>
+            <ul>
+              <li v-for="member in board.members" v-bind:key="member.id" class="member-settings-item">
+                <p>{{member.username}}</p>
+                <button class="button is-warning is-rounded" @click="toggleModal('editMemberModal')">
+                  <span class="icon is-small">
+                    <i class="fas fa-user-edit"></i>
+                  </span>
+                </button>
+                <button class="button is-danger is-rounded" @click="toggleModal('deleteMemberModal')">
+                  <span class="icon is-small">
+                    <i class="fas fa-user-minus"></i>
+                  </span>
+                </button>
+              </li>
+            </ul>
           </Tab>
         </Tabs>
       </div>
@@ -215,6 +215,7 @@ export default {
   flex-flow: row nowrap;
   justify-content: flex-end;
   background-color: var(--primary-light);
+  color: var(--primary);
   border-radius: 10px;
 }
 

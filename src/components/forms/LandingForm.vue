@@ -4,6 +4,7 @@
       <div class="field-container">
         <p>Email address</p>
         <input
+          v-model="email"
           type="email"
           name="email"
           id="login-email-field"
@@ -14,6 +15,7 @@
       <div class="field-container">
         <p>Password</p>
         <input
+          v-model="password"
           type="password"
           name="password"
           id="login-password-field"
@@ -54,9 +56,15 @@ export default {
       default: "login"
     }
   },
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
   methods: {
     login() {
-      var body = {
+      let body = {
         email: this.email,
         password: this.password
       }
