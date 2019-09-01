@@ -35,9 +35,30 @@ export default {
     color: rgba(255, 255, 255, 0.2);
   }
 
+<<<<<<< HEAD
   .button:hover {
     color: var(--primary-light);
     border-color: var(--primary-light) !important;
+=======
+    @media (min-width: 1000px) {
+      // margin-top: 7em;
+      position: absolute;
+      bottom: 40%;
+    }
+    @media (max-width: 1000px) {
+      position: absolute;
+      bottom: 10%;
+    }
+  }
+  .page-header {
+    @media (min-width: 1000px) {
+      margin-top: 5em;
+      margin-bottom: 2em;
+    }
+    @media (max-width: 1000px) {
+      margin-top: 2em;
+    }
+>>>>>>> origin/develop
   }
 }
 </style>

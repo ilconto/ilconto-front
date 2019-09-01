@@ -44,4 +44,43 @@ export default {
   color: white;
   font-weight: bold;
 }
+.animated {
+  animation-duration: 3s;
+  animation-name: anim;
+  animation-iteration-count: 1;
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+  color: red;
+}
+
+.just-loaded {
+  animation-duration: 3s;
+  animation-name: enter-anim;
+  animation-iteration-count: 1;
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+@keyframes anim {
+  from {
+    font-size: 5em;
+  }
+  50% {
+    font-size: 5.2em;
+  }
+  to {
+    font-size: 5em;
+  }
+}
+
+@keyframes enter-anim {
+  from {
+    font-size: 0em;
+  }
+  to {
+    font-size: 5em;
+  }
+}
 </style>

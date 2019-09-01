@@ -127,10 +127,11 @@ export default {
     EditMemberModal,
     DeleteMemberModal,
   },
-  created() {
+  mounted() {
     this.fetchBoardData();
   },
   methods: {
+    compare: compare,
     fetchBoardData() {
       /* This function:
       - Retrieves board data from the backend api
