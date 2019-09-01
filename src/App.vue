@@ -13,51 +13,33 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa:700&display=swap");
+@import url("./assets/variables.css");
+
 #app {
-  text-align: center;
-  color: white;
-  padding: 1em;
-  border-style: solid;
-  border-width: 0.5em;
-  border-radius: 0.5em;
-  background-image: url("~@/assets/dark-paths.png");
-  background-size: 30vh;
-  // height: 90vh;
-  // @media (max-width: 1000px) {
-  //   height: 100vh;
-  // }
-  // @media (min-width: 1000px) {
-  //   height: 100vh;
-  // }
-  height: 100vh;
-  margin-top: 0;
+  color: var(--primary-light);
+  background: url("assets/background-2.svg");
+  min-height: 100vh;
+  box-sizing: border-box;
+  width: 100vw;
+  font-family: "Comfortaa", cursive;
   overflow: hidden;
 
-  .marker,
-  label {
-    font-family: "Permanent Marker", cursive;
-    color: white;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  .title {
-    @extend .marker;
+  .container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
   }
 
-  button {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    @media (max-width: 1000px) {
-      width: 100%;
-    }
-    @media (min-width: 1000px) {
-      width: 40%;
-    }
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.2);
   }
-  .btn-group {
-    width: 100%;
 
+<<<<<<< HEAD
+  .button:hover {
+    color: var(--primary-light);
+    border-color: var(--primary-light) !important;
+=======
     @media (min-width: 1000px) {
       // margin-top: 7em;
       position: absolute;
@@ -76,6 +58,7 @@ export default {
     @media (max-width: 1000px) {
       margin-top: 2em;
     }
+>>>>>>> origin/develop
   }
 }
 </style>

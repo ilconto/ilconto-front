@@ -1,45 +1,49 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import CreateBoard from '@/components/CreateBoard'
-import Board from '@/components/Board'
-import Login from '@/components/Login'
-import SignIn from '@/components/SignIn'
-import LandingPage from '@/components/LandingPage'
-import UserProfile from '@/components/UserProfile'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+/* Components */
+import LandingPage from '@/components/LandingPage';
+import CreateBoard from '@/components/CreateBoard';
+import Board from '@/components/Board';
+import UserProfile from '@/components/UserProfile';
 
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export default new VueRouter({
     routes: [{
-            path: "/create",
-            name: "create",
+            path: '/',
+            name: 'root',
+            component: LandingPage,
+        },{
+            path: '/login',
+            name: 'login',
+            component: LandingPage,
+            props: {
+                action: 'login'
+            }
+        },{
+            path: '/register',
+            name: 'register',
+            component: LandingPage,
+            props: {
+                action: 'register'
+            }
+        },
+        {
+            path: '/board',
+            name: 'board',
+            component: Board
+        },
+        {
+            path: '/createboard',
+            name: 'createboard',
             component: CreateBoard
         },
         {
-            path: "/login",
-            name: "login",
-            component: Login,
-        },
-        {
-            path: "/signin",
-            name: "signin",
-            component: SignIn,
-        },
-        {
-            path: "/",
-            name: "root",
-            component: LandingPage,
-        },
-        {
-            path: "/profile",
-            name: "user",
+            path: '/profile',
+            name: 'profile',
             component: UserProfile
-        },
-        {
-            path: "/board/:id",
-            name: "board",
-            component: Board
         }
     ]
-})
+});
