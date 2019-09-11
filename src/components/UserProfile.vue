@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="profile-page">
-    <ProfileHeader />
+    <Header :subtitle="false" />
     <div id="board-list">
       <BoardListItem />
       <BoardListItem />
@@ -16,11 +16,11 @@
 
 
 <script>
-import ProfileHeader from "./ProfileHeader";
+import Header from "./Header";
 import BoardListItem from "./BoardListItem";
 
 export default {
-  components: { ProfileHeader, BoardListItem },
+  components: { Header, BoardListItem },
   data() {
     return {
       username: "",
