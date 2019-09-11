@@ -27,7 +27,7 @@ export default {
   .container {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    // justify-content: center;
   }
 
   ::placeholder {

@@ -1,12 +1,10 @@
 <template>
   <div class="container item">
-    <!-- <p>Board 1 --- 10 days</p>
-    -->
     <p>
       <span>Board title</span> -
       <span>Score</span> -
       <span>
-        <b-button>View</b-button>
+        <b-button @click="showDetails">View</b-button>
       </span>
     </p>
   </div>
@@ -16,6 +14,11 @@
 export default {
   data() {
     return {};
+  },
+  methods: {
+    showDetails() {
+      this.$router.push("/board");
+    }
   }
 };
 </script>
