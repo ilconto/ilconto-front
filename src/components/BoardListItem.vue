@@ -28,7 +28,8 @@ export default {
   background-color: rgba(255, 255, 255, 0.2);
   width: 100%;
   margin: 1em auto;
-  padding: 3em;
+  padding: 2em;
   border-radius: 1cm;
+  font-size: 2em;
 }
 </style>

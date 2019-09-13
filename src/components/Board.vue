@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <!-- Modals -->
     <div class="modal" :class="{'is-active': isActiveModal.resetModal}">
       <div class="modal-background" @click="toggleModal('resetModal')"></div>
@@ -27,11 +26,11 @@
             <p class="modal-card-title">Member settings</p>
           </header>
           <section class="modal-card-body">
-            <form action="" class="member-settings-form">
+            <form action class="member-settings-form">
               <div class="field">
                 <label class="label">Member displayed name</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Enter a new name">
+                  <input class="input" type="text" placeholder="Enter a new name" />
                 </div>
                 <p class="help">Enter a new member name</p>
               </div>
@@ -53,30 +52,30 @@
             <p class="modal-card-title">New member</p>
           </header>
           <section class="modal-card-body">
-            <form action="" class="member-settings-form">
+            <form action class="member-settings-form">
               <div class="field">
                 <label class="label">Member's displayed name</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="Enter a member name">
+                  <input class="input" type="text" placeholder="Enter a member name" />
                 </div>
                 <p class="help">Enter the member's name</p>
               </div>
               <div class="field">
                 <label class="label">Member email</label>
                 <div class="control">
-                  <input class="input" type="email" placeholder="Enter the member's email">
+                  <input class="input" type="email" placeholder="Enter the member's email" />
                 </div>
                 <p class="help">An email is required to create a board member</p>
               </div>
               <div class="field">
                 <div class="control">
                   <label class="label">Member initial reset</label>
-                  <input class="input" type="date">
+                  <input class="input" type="date" />
                 </div>
               </div>
               <div class="field">
                 <div class="control">
-                  <input class="input" type="time">
+                  <input class="input" type="time" />
                 </div>
                 <p class="help">Enter the initial reset time of this the new member</p>
               </div>
@@ -89,7 +88,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="modal" :class="{'is-active': isActiveModal.deleteMemberModal}">
       <div class="modal-background" @click="toggleModal('deleteMemberModal')"></div>
       <div class="modal-content">
@@ -107,16 +106,15 @@
       </div>
     </div>
 
-
     <!-- Page content -->
     <div v-if="loading" class="loading-screen">
-      <Spinner/>
+      <Spinner />
     </div>
 
     <div v-else-if="error">Could not load board</div>
 
     <div v-else-if="settings" id="board-settings-page">
-      <Header :subtitle="false"/>
+      <Header :subtitle="false" />
 
       <div class="board-settings">
         <div class="board-header">
@@ -129,11 +127,11 @@
 
         <Tabs class="board-settings-tabs">
           <Tab name="Settings" :selected="true">
-            <form action="" class="settings-form">
+            <form action class="settings-form">
               <div class="field">
                 <label class="label">Board title</label>
                 <div class="control">
-                  <input class="input" type="text" :placeholder="board.title" :value="board.title">
+                  <input class="input" type="text" :placeholder="board.title" :value="board.title" />
                 </div>
                 <p class="help">Enter a new title</p>
               </div>
@@ -145,33 +143,46 @@
             </form>
           </Tab>
           <Tab name="Manage Members" class="member-manager">
-              <button class="button add-button" @click="toggleModal('addMemberModal')">Add board member</button>
-              <ul>
-                <li v-for="member in board.members" v-bind:key="member.id" class="member-settings-item">
-                  <p>{{member.username}}</p>
-                  <button class="button is-warning is-rounded" @click="toggleModal('editMemberModal')">
-                    <span class="icon is-small">
-                      <i class="fas fa-user-edit"></i>
-                    </span>
-                  </button>
-                  <button class="button is-danger is-rounded" @click="toggleModal('deleteMemberModal')">
-                    <span class="icon is-small">
-                      <i class="fas fa-user-minus"></i>
-                    </span>
-                  </button>
-                </li>
-              </ul>
+            <button
+              class="button add-button"
+              @click="toggleModal('addMemberModal')"
+            >Add board member</button>
+            <ul>
+              <li
+                v-for="member in board.members"
+                v-bind:key="member.id"
+                class="member-settings-item"
+              >
+                <p>{{member.username}}</p>
+                <button
+                  class="button is-warning is-rounded"
+                  @click="toggleModal('editMemberModal')"
+                >
+                  <span class="icon is-small">
+                    <i class="fas fa-user-edit"></i>
+                  </span>
+                </button>
+                <button
+                  class="button is-danger is-rounded"
+                  @click="toggleModal('deleteMemberModal')"
+                >
+                  <span class="icon is-small">
+                    <i class="fas fa-user-minus"></i>
+                  </span>
+                </button>
+              </li>
+            </ul>
           </Tab>
         </Tabs>
       </div>
     </div>
 
     <div v-else id="board-page">
-      <Header :subtitle="false"/>
+      <Header :subtitle="false" />
 
       <div class="board">
         <div class="board-header">
-          <h2 class="title is-3">{{this.board.title}}</h2>
+          <h2 class="title is-3 board-title">{{this.board.title}}</h2>
         </div>
 
         <div class="board-tools">
@@ -181,26 +192,24 @@
 
         <ul>
           <li v-for="member in board.members" v-bind:key="member.id">
-            <BoardMember :rank="1" :username="member.username" :delay="member.last_time"/>
+            <BoardMember :rank="1" :username="member.username" :delay="member.last_time" />
           </li>
         </ul>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-import Header from './Header'
-import BoardMember from "./BoardMember"
-import Spinner from './Spinner'
-import Tabs from './Tabs'
-import Tab from './Tab'
+import Header from "./Header";
+import BoardMember from "./BoardMember";
+import Spinner from "./Spinner";
+import Tabs from "./Tabs";
+import Tab from "./Tab";
 
 /* Temporary import, will be removed with connection to the api */
-import data from "../data.json"
-import { setTimeout } from 'timers';
+import data from "../data.json";
+import { setTimeout } from "timers";
 
 export default {
   data() {
@@ -215,7 +224,7 @@ export default {
         resetModal: false,
         editMemberModal: false,
         addMemberModal: false,
-        deleteMemberModal: false,
+        deleteMemberModal: false
       }
     };
   },
@@ -235,21 +244,22 @@ export default {
       - Retrieves board data from the backend api
       - Changes the component state from loading to loaded or error
       */
-      let board = this
+      let board = this;
       setTimeout(function() {
-        board.loading = false
-      }, 2)
+        board.loading = false;
+      }, 2);
     },
     toggleSettings() {
-      this.settings = !this.settings
-      this.activeSettingsTab = this.activeSettingsTab === null ? 'general' : this.activeSettingsTab
+      this.settings = !this.settings;
+      this.activeSettingsTab =
+        this.activeSettingsTab === null ? "general" : this.activeSettingsTab;
     },
     toggleModal(name) {
-      Object.keys(this.isActiveModal).map((modal) => {
-        if(modal === name){
-          this.isActiveModal[modal] = !this.isActiveModal[modal]
+      Object.keys(this.isActiveModal).map(modal => {
+        if (modal === name) {
+          this.isActiveModal[modal] = !this.isActiveModal[modal];
         }
-      })
+      });
     }
   }
 };
@@ -257,20 +267,22 @@ export default {
 
 
 <style scoped>
-
 .loading-screen {
   width: 100%;
   display: flex;
   height: 50vh;
 }
 
-#board-page, #board-settings-page {
+#board-page,
+#board-settings-page {
   display: flex;
   flex-flow: column nowrap;
 }
 
-.board , .board-settings {
-  background-color: white;
+.board,
+.board-settings {
+  /* background-color: white; */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .board-header {
@@ -280,6 +292,10 @@ export default {
   width: 100%;
 }
 
+.board-title {
+  color: var(--primary-light);
+}
+
 .board-tools {
   width: 100%;
   display: flex;
@@ -287,7 +303,8 @@ export default {
   justify-content: space-around;
 }
 
-.board-tools .button, .member-manager .add-button {
+.board-tools .button,
+.member-manager .add-button {
   background-color: var(--primary-light);
   color: var(--primary-dark);
 }
@@ -311,7 +328,7 @@ export default {
 }
 
 .member-settings-item {
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   box-sizing: border-box;
   margin: 1em 10%;
   display: flex;
