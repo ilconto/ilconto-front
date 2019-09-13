@@ -7,8 +7,6 @@
       <BoardListItem />
       <BoardListItem />
       <BoardListItem />
-      <BoardListItem />
-      <BoardListItem />
     </div>
   </div>
 </template>
@@ -27,10 +25,7 @@ export default {
       boards: []
     };
   },
-  created() {
-    // this.boards = this.$session.get("user").boards;
-    // this.username = this.$session.get("user").email;
-  }
+  created() {}
 };
 </script>
 

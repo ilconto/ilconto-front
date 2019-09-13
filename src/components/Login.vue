@@ -71,7 +71,6 @@ export default {
           this.$router.push("/profile");
         })
         .catch(e => {
-          // console.log(e);
           this.$snackbar.open({
             message: "Could not log you in. Please try again",
             type: "is-warning",
