@@ -1,80 +1,89 @@
 <template>
-  <span>
-    <div class="main level has-background-primary">
-      <span class="level-item">{{member.username}}</span>
-      <span v-if="isOwner">
-        <b-button @click="confirmReset" type="is-danger">reset my score</b-button>
-      </span>
-      <span class="level-item score">{{score}} days</span>
-    </div>
-  </span>
+  <div class="member">
+    <p class="member-username">
+      {{username}}
+    </p>
+    <p class="member-delay">
+      {{readableDelay}}
+    </p>
+    <p class="member-rank">
+      {{rank}}
+    </p>
+  </div>
 </template>
 
 <script>
-import axios from "axios";
 
-function computeScore(inputDate) {
-  var now = Date.now();
-  var deltaSeconds = now - inputDate;
-  return Math.round(deltaSeconds / (1000 * 60 * 60 * 24));
-}
+import moment from 'moment'
 
 export default {
   name: "BoardMember",
-  props: ["member", "boardID"],
-  data() {
-    return {
-      username: "",
-      isOwner: false,
-      boards: [],
-      score: 0
-    };
-  },
-  methods: {
-    computeScore: computeScore,
-    created() {},
-    confirmReset() {
-      var boardID = this.boardID;
-      this.$dialog.confirm({
-        title: "Resetting your score",
-        message:
-          "Are you sure you want to <b>reset</b> your score? This action cannot be undone.",
-        confirmText: "Reset score",
-        type: "is-danger",
-        hasIcon: true,
-        onConfirm: () => {
-          this.score = computeScore(Date.now() / 1000);
-          axios({
-            method: "patch",
-            baseURL: process.env.MOCK_APP_ROOT_API,
-            url: `/boards/${boardID}/reset/${this.$session.get("user").id}`
-          })
-            .then(response => {})
-            .catch(error => {
-              this.score = computeScore(this.member.last_time); // abort modification if request failed
-              console.log(error);
-            });
-        }
-      });
+  props: {
+    username: {
+      type: String,
+      required: true,
+    },
+    delay: {
+      type: Number,
+      required: true,
+    },
+    rank: {
+      type: Number,
+      required: true,
     }
+  },
+
+  computed: {
+    readableDelay: function() {
+      return moment.duration(this.delay).humanize()
+    }
+  },
+
+  methods: {
+
+    // confirmReset() {
+    //   var boardID = this.boardID;
+    //   this.$dialog.confirm({
+    //     title: "Resetting your score",
+    //     message:
+    //       "Are you sure you want to <b>reset</b> your score? This action cannot be undone.",
+    //     confirmText: "Reset score",
+    //     type: "is-danger",
+    //     hasIcon: true,
+    //     onConfirm: () => {
+    //       this.score = computeScore(Date.now() / 1000);
+    //       axios({
+    //         method: "patch",
+    //         baseURL: process.env.VUE_APP_ROOT_API,
+    //         url: `/boards/${boardID}/reset/${this.$session.get("user").id}`
+    //       })
+    //         .then(response => {})
+    //         .catch(error => {
+    //           this.score = computeScore(this.member.last_time); // abort modification if request failed
+    //           console.log(error);
+    //         });
+    //     }
+    //   });
+    // }
   },
   mounted() {
-    if (this.member.username == this.$session.get("username")) {
-      this.isOwner = true;
-    }
-    this.score = computeScore(this.member.score);
+    
   }
 };
 </script>
 
 <style >
-.main {
-  font-size: 2em;
-  color: white;
-  margin: 1em;
-  border-radius: 0.5em;
-}
-.score {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+.member {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  width: 80%;
+  margin: 1.2em auto;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  justify-content: space-between;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 </style>

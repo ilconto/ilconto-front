@@ -1,0 +1,30 @@
+{
+    "id": "3",
+    "title": "MyBoard",
+    "members": [{
+            "id": "34",
+            "username": "Paul",
+            "email": "pe@hovosotig.ae",
+            "last_time": 15624148,
+            "board": "3",
+            "user": "5"
+        },
+        {
+            "id": "50",
+            "username": "Hugo",
+            "email": "idedi@puufa.mh",
+            "last_time": 15624148904958,
+            "board": "3",
+            "user": "5"
+        },
+        {
+            "id": "84",
+            "username": "Maxence",
+            "email": "icrab@toc.pk",
+            "last_time": 15624148,
+            "board": "3",
+            "user": "5"
+        }
+
+    ]
+}
