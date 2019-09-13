@@ -20,6 +20,7 @@ export default {
   color: var(--primary-light);
   background: url("assets/background-2.svg");
   min-height: 100vh;
+  box-sizing: border-box;
   width: 100vw;
   font-family: "Comfortaa", cursive;
   overflow: hidden;

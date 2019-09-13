@@ -1,44 +1,29 @@
 <template>
-  <div class="container">
-    <div class="centered-constrained">
-      <h1 class="title is-1">Create a new board here</h1>
+  <div class="container" id="create-board">
+    <Header :subtitle="false"/>
+    <p class="title page-description">Create a new board</p>
 
-      <div class="inputs">
-        <b-field label="Board Name">
-          <b-input v-model="boardName" placeholder="you board name"></b-input>
-        </b-field>
+    <CreateBoardForm />      
 
-        <b-field label="Members">
-          <b-input v-model="emailToAdd" placeholder="example@domain.com" type="email"></b-input>
-        </b-field>
-        <ul>
-          <li v-for="member in members" v-bind:key="member">
-            <div class="level">
-              <span class="level-item">{{ member }}</span>
-              <b-button class="is-danger level-item">delete</b-button>
-            </div>
-          </li>
-        </ul>
-        <p>
-          <b-button v-on:click="addToMemberList" type="is-light">Add member</b-button>
-        </p>
-      </div>
-
-      <p>
-        <b-button type="is-primary">Create Board</b-button>
-      </p>
-      <p id="back">
-        <router-link :to="{name:'root'}">
-          <b-button type="is-info">Back</b-button>
-        </router-link>
-      </p>
+    <div class="action-buttons">
+      <button class="button is-primary submit-button">Create Board</button>
+      <router-link :to="{name:'root'}">
+        <button class="button is-info">Back to profile</button>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header'
+import CreateBoardForm from '@/components/forms/CreateBoardForm'
+
 export default {
   name: "CreateBoard",
+  components: {
+    Header,
+    CreateBoardForm
+  },
   data() {
     return {
       boardName: null,
@@ -57,14 +42,39 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
-.boardHeader {
-  margin-bottom: 3em;
+<style scoped>
+
+#create-board {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
-.title.is-6 {
-  font-family: default;
+
+.page-description {
+  color: var(--primary-light);
+  text-align: center;
+  margin: 1.5em 0;
+  width: 100%;
 }
-b-button.is-danger {
-  width: 1cm;
+
+.action-buttons {
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  padding: 1em 0;
+  box-sizing: border-box;
 }
+
+.submit-button {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light) !important;
+  color: var(--primary-dark);
+}
+
+.submit-button:hover {
+  color: var(--primary-light);
+  background-color: var(--primary-dark) !important;
+}
+
 </style>

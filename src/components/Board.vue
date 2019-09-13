@@ -233,7 +233,11 @@ export default {
     BoardMember,
     Spinner,
     Tabs,
-    Tab
+    Tab,
+    ResetModal,
+    AddMemberModal,
+    EditMemberModal,
+    DeleteMemberModal,
   },
   created() {
     this.fetchBoardData();
@@ -335,6 +339,7 @@ export default {
   flex-flow: row nowrap;
   justify-content: flex-end;
   background-color: var(--primary-light);
+  color: var(--primary);
   border-radius: 10px;
 }
 
@@ -346,19 +351,5 @@ export default {
 
 .member-settings-item button:first-of-type {
   margin-right: 5px;
-}
-
-.modal-content {
-  width: 80%;
-}
-
-.modal-card {
-  margin: 0;
-}
-
-.modal-actions {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
 }
 </style>
