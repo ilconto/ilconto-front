@@ -8,9 +8,6 @@
         v-bind:title="item.board.title"
         v-bind:key="id"
       />
-      <BoardListItem />
-      <BoardListItem />
-      <BoardListItem />
       <button class="submit-button button is-size-4" @click="goToCreateBoardForm">Create a new board</button>
     </div>
   </div>
