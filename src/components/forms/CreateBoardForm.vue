@@ -46,8 +46,8 @@ export default {
   },
   methods: {
     addMember: function() {
-      this.members.push(this.newMemberEmail)
-      console.log(this.members)
+      this.members.push(this.newMemberEmail);
+      this.newMemberEmail = "";
     },
     deleteMember: function(member) {
       this.members = this.members.filter(x => x !== member)
