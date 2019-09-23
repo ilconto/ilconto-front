@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <form action class="welcome-form" v-if="action === 'login'" id="login-form">
+    <form class="welcome-form" v-if="action === 'login'" id="login-form">
       <div class="field-container">
         <p>Email address</p>
         <input
@@ -25,31 +25,61 @@
       </div>
       <button @click.prevent="login" class="submit-button button is-size-4">Log in</button>
     </form>
-    <form action="" class="welcome-form" id="register-form" v-if="action === 'register'">
+    <form action class="welcome-form" id="register-form" v-if="action === 'register'">
       <div class="field-container">
         <p>Email address</p>
-        <input type="email" name="email" id="register-email-field" class="welcome-form-field" placeholder="example@email.com">
+        <input
+          v-model="email"
+          type="email"
+          name="email"
+          id="register-email-field"
+          class="welcome-form-field"
+          placeholder="example@email.com"
+        />
       </div>
       <div class="field-container">
         <p>Username</p>
-        <input type="text" name="username" id="register-username-field" class="welcome-form-field" placeholder="username">
+        <input
+          v-model="username"
+          type="text"
+          name="username"
+          id="register-username-field"
+          class="welcome-form-field"
+          placeholder="username"
+        />
       </div>
       <div class="field-container">
         <p>Password</p>
-        <input type="password" name="password1" id="register-password1-field" class="welcome-form-field" placeholder="password">
+        <input
+          v-model="password1"
+          type="password"
+          name="password1"
+          id="register-password1-field"
+          class="welcome-form-field"
+          placeholder="password"
+        />
       </div>
       <div class="field-container">
         <p>Confirm password</p>
-        <input type="password" name="password2" id="register-password2-field" class="welcome-form-field" placeholder="please confirm your password">
+        <input
+          v-model="password2"
+          type="password"
+          name="password2"
+          id="register-password2-field"
+          class="welcome-form-field"
+          placeholder="please confirm your password"
+        />
       </div>
-      <button class="submit-button button is-size-4">Create account</button>
+      <button @click.prevent="register" class="submit-button button is-size-4">Create account</button>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: 'landing-form',
+  name: "landing-form",
   props: {
     action: {
       type: String,
@@ -59,18 +89,17 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      username: "",
+      password1: "",
+      password2: ""
     };
   },
   methods: {
     login() {
-      let body = {
-        email: this.email,
-        password: this.password
-      }
-      var bodyFormData = new FormData()
-      bodyFormData.set("email", this.email)
-      bodyFormData.set("password", this.password)
+      var bodyFormData = new FormData();
+      bodyFormData.set("email", this.email);
+      bodyFormData.set("password", this.password);
       axios({
         method: "post",
         baseURL: process.env.VUE_APP_ROOT_API,
@@ -80,9 +109,8 @@ export default {
         headers: { "Content-Type": "application/json" }
       })
         .then(response => {
-          console.log(response.data);
-          this.$session.set("user", response.data.user)
-          this.$router.push("/profile")
+          this.$session.set("token", response.data.key);
+          this.$router.push("/profile");
         })
         .catch(e => {
           this.$snackbar.open({
@@ -93,20 +121,56 @@ export default {
             queue: false,
             duration: 5000,
             onAction: () => {
-              this.$router.push("/signin")
+              this.$router.push("/signin");
             }
-          })
+          });
 
-          this.email = ""
-          this.password = ""
+          this.email = "";
+          this.password = "";
+        });
+    },
+    register() {
+      var bodyFormData = new FormData();
+      bodyFormData.set("email", this.email);
+      bodyFormData.set("username", this.username);
+      bodyFormData.set("password1", this.password1);
+      bodyFormData.set("password2", this.password2);
+      axios({
+        method: "post",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/rest-auth/registration/",
+        data: bodyFormData,
+        json: true,
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => {
+          this.$session.set("token", response.data.key);
+          this.$router.push("/profile");
         })
+        .catch(e => {
+          this.$snackbar.open({
+            message: "Could not create account. Please try again",
+            type: "is-warning",
+            position: "is-bottom",
+            actionText: "create an account",
+            queue: false,
+            duration: 5000,
+            onAction: () => {
+              this.$router.push("/signin");
+            }
+          });
+
+          this.email = "";
+          this.username = "";
+          this.password1 = "";
+          this.password2 = "";
+        });
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 .welcome-form {
   width: 100%;
   margin: 1em 0;
@@ -151,7 +215,7 @@ select:focus {
 .welcome-form-field {
   width: 100%;
   background: transparent;
-  padding: .5em 0;
+  padding: 0.5em 0;
   border: 0px solid transparent;
   border-bottom: 2px solid white;
   box-sizing: border-box;
