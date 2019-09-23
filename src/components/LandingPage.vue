@@ -5,13 +5,13 @@
       You can also
       <router-link :to="nextAction">{{nextAction}}</router-link>
     </p>
-    <LandingForm :action="action"/>
+    <LandingForm :action="action" />
   </div>
 </template>
 
 <script>
-import Header from "./Header"
-import LandingForm from "./forms/LandingForm"
+import Header from "./Header";
+import LandingForm from "./forms/LandingForm";
 
 export default {
   name: "landing-page",
@@ -22,12 +22,12 @@ export default {
   props: {
     action: {
       type: String,
-      default: 'login'
+      default: "login"
     }
   },
   computed: {
     nextAction: function() {
-      return this.action == 'login' ? 'register' : 'login'
+      return this.action == "login" ? "register" : "login";
     }
   }
 };

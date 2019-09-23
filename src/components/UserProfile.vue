@@ -11,11 +11,7 @@
       <BoardListItem />
       <BoardListItem />
       <BoardListItem />
-      <BoardListItem />
-      <BoardListItem />
-      <BoardListItem />
-      <BoardListItem />
->>>>>>>>> Temporary merge branch 2
+      <button class="submit-button button is-size-4" @click="goToCreateBoardForm">Create a new board</button>
     </div>
   </div>
 </template>
@@ -24,11 +20,7 @@
 
 <script>
 import axios from "axios";
-=========
-
-
-<script>
-import ProfileHeader from "./ProfileHeader";
+import Header from "./Header";
 import BoardListItem from "./BoardListItem";
 
 export default {
@@ -72,6 +64,11 @@ export default {
         this.email = "";
         this.password = "";
       });
+  },
+  methods: {
+    goToCreateBoardForm() {
+      this.$router.push("/createboard");
+    }
   }
 };
 </script>

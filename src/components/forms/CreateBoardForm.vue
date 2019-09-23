@@ -1,5 +1,5 @@
 <template>
-  <form action="" class="create-board-form">
+  <form action class="create-board-form">
     <div class="field-container">
       <p>Title</p>
       <input
@@ -12,7 +12,10 @@
       />
     </div>
     <div class="members">
-      <p>Members</p>
+      <p>
+        Members
+        <span style="opacity: 0.5">(other than yourself)</span>
+      </p>
       <div class="member-container field">
         <input
           v-model="newMemberEmail"
@@ -21,43 +24,52 @@
           placeholder="Enter an email.."
           required
         />
-        <button class="button is-success submit-button" @click.prevent="addMember">
-          Add
-        </button>
+        <button class="button is-success submit-button" @click.prevent="addMember">Add</button>
       </div>
       <ul class="members-list">
         <li v-for="member in members" v-bind:key="member" class="member-container entered">
-          <p>{{member}}</p><button class="button is-danger" @click.prevent="deleteMember(member)">Delete</button>
+          <p>{{member}}</p>
+          <button class="button is-danger" @click.prevent="deleteMember(member)">Delete</button>
         </li>
       </ul>
     </div>
+    <button @click.prevent="createBoard" class="submit-button button is-size-4">Create new board</button>
   </form>
 </template>
 
 <script>
+import { isEmailValid } from "@/utils";
+
 export default {
-  name: 'create-board-form',
+  name: "create-board-form",
   data: function() {
     return {
       newMemberEmail: "",
       title: "",
       members: []
-    }
+    };
   },
   methods: {
     addMember: function() {
-      this.members.push(this.newMemberEmail);
-      this.newMemberEmail = "";
+      if (
+        isEmailValid(this.newMemberEmail) &&
+        !this.members.includes(this.newMemberEmail)
+      ) {
+        this.members.push(this.newMemberEmail);
+        this.newMemberEmail = "";
+      }
     },
     deleteMember: function(member) {
-      this.members = this.members.filter(x => x !== member)
+      this.members = this.members.filter(x => x !== member);
+    },
+    createBoard() {
+      var bodyFormData = new FormData();
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 .create-board-form {
   width: 100%;
   margin: 1em 0;
@@ -98,7 +110,7 @@ export default {
 .create-board-form-field {
   width: 100%;
   background: transparent;
-  padding: .5em 0;
+  padding: 0.5em 0;
   border: 0px solid transparent;
   border-bottom: 2px solid white;
   box-sizing: border-box;
@@ -128,7 +140,7 @@ export default {
 .member-container.field input {
   width: 80%;
   background: transparent;
-  padding: .5em 0;
+  padding: 0.5em 0;
   border: 0px solid transparent;
   border-bottom: 2px solid white;
   box-sizing: border-box;
@@ -151,15 +163,14 @@ export default {
 }
 
 .submit-button {
-  width: 15%;
-  background-color: var(--primary-light);
-  border-color: var(--primary-light) !important;
-  color: var(--primary-dark);
+  margin: auto;
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: var(--primary-light);
 }
 
 .submit-button:hover {
-  color: var(--primary-light);
-  background-color: var(--primary-dark) !important;
+  color: var(--primary-light) !important;
+  border-color: var(--primary-ligth) !important;
 }
-
 </style>

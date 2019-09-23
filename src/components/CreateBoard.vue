@@ -1,13 +1,12 @@
 <template>
   <div class="container" id="create-board">
-    <Header :subtitle="false"/>
+    <Header :subtitle="false" />
     <p class="title page-description">Create a new board</p>
 
-    <CreateBoardForm />      
+    <CreateBoardForm />
 
     <div class="action-buttons">
-      <button class="button is-primary submit-button">Create Board</button>
-      <router-link :to="{name:'root'}">
+      <router-link :to="{name:'profile'}">
         <button class="button is-info">Back to profile</button>
       </router-link>
     </div>
@@ -15,8 +14,8 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import CreateBoardForm from '@/components/forms/CreateBoardForm'
+import Header from "@/components/Header";
+import CreateBoardForm from "@/components/forms/CreateBoardForm";
 
 export default {
   name: "CreateBoard",
@@ -43,7 +42,6 @@ export default {
 
 
 <style scoped>
-
 #create-board {
   display: flex;
   flex-flow: column nowrap;
@@ -76,5 +74,4 @@ export default {
   color: var(--primary-light);
   background-color: var(--primary-dark) !important;
 }
-
 </style>

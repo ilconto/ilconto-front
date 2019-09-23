@@ -15,14 +15,14 @@ export default new VueRouter({
             path: '/',
             name: 'root',
             component: LandingPage,
-        },{
+        }, {
             path: '/login',
             name: 'login',
             component: LandingPage,
             props: {
                 action: 'login'
             }
-        },{
+        }, {
             path: '/register',
             name: 'register',
             component: LandingPage,
