@@ -1,7 +1,7 @@
 <template>
   <div class="container item">
     <p>
-      <span>Board title</span> -
+      <span>{{title}}</span> -
       <span>Score</span> -
       <span>
         <b-button @click="showDetails">View</b-button>
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  props: ["title"],
   data() {
     return {};
   },
