@@ -39,6 +39,7 @@
 
 <script>
 import { isEmailValid } from "@/utils";
+import axios from "axios";
 
 export default {
   name: "create-board-form",
@@ -63,7 +64,51 @@ export default {
       this.members = this.members.filter(x => x !== member);
     },
     createBoard() {
-      var bodyFormData = new FormData();
+      var bodyData = {
+        title: this.title,
+        members: this.members.map(member => {
+          let output = {
+            user: {
+              email: member
+            }
+          };
+          return output;
+        })
+      };
+      console.log(this.members);
+      console.log(bodyData);
+      axios({
+        method: "post",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/boards/",
+        data: bodyData,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${this.$session.get("token")}`
+        }
+      })
+        .then(response => {
+          this.$router.push("/profile");
+        })
+        .catch(e => {
+          this.$snackbar.open({
+            message: "Could not create account. Please try again",
+            type: "is-warning",
+            position: "is-bottom",
+            actionText: "create an account",
+            queue: false,
+            duration: 5000,
+            onAction: () => {
+              this.$router.push("/signin");
+            }
+          });
+
+          this.email = "";
+          this.username = "";
+          this.password1 = "";
+          this.password2 = "";
+        });
     }
   }
 };
