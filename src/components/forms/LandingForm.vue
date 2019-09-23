@@ -23,7 +23,7 @@
           placeholder="your password.."
         />
       </div>
-      <button @click="login" class="submit-button button is-size-4">Log in</button>
+      <button @click.prevent="login" class="submit-button button is-size-4">Log in</button>
     </form>
     <form action="" class="welcome-form" id="register-form" v-if="action === 'register'">
       <div class="field-container">
