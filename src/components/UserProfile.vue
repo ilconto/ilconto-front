@@ -13,6 +13,9 @@
       <BoardListItem />
       <BoardListItem />
       <BoardListItem />
+      <BoardListItem />
+      <BoardListItem />
+>>>>>>>>> Temporary merge branch 2
     </div>
   </div>
 </template>
@@ -20,7 +23,12 @@
 
 
 <script>
-import Header from "./Header";
+import axios from "axios";
+=========
+
+
+<script>
+import ProfileHeader from "./ProfileHeader";
 import BoardListItem from "./BoardListItem";
 
 export default {

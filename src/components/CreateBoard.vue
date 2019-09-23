@@ -53,7 +53,7 @@ export default {
 .page-description {
   color: var(--primary-light);
   text-align: center;
-  margin: 1.5em 0;
+  margin: 1.5em 0 0 0;
   width: 100%;
 }
 

@@ -48,11 +48,16 @@ export default {
   },
   methods: {
     login() {
+      var body = {
+        username: this.username,
+        email: this.email,
+        password: this.password
+      };
       var bodyFormData = new FormData();
       bodyFormData.set("username", this.username);
       bodyFormData.set("email", this.email);
       bodyFormData.set("password", this.password);
-
+      console.log(process.env.VUE_MOCK_APP_ROOT_API);
       axios({
         method: "post",
         baseURL: process.env.VUE_APP_ROOT_API,
@@ -67,7 +72,7 @@ export default {
           this.$session.set("email", this.email);
           this.$session.set("username", this.username);
           this.$router.push("/profile");
-          console.log(this.$session.get("email"));
+          console.log(this.$session.get("token"));
         })
         .catch(e => {
           console.log(e);
