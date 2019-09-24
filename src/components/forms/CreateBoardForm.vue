@@ -75,8 +75,7 @@ export default {
           return output;
         })
       };
-      console.log(this.members);
-      console.log(bodyData);
+
       axios({
         method: "post",
         baseURL: process.env.VUE_APP_ROOT_API,
