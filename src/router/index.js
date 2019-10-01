@@ -6,6 +6,7 @@ import LandingPage from '@/components/LandingPage';
 import CreateBoard from '@/components/CreateBoard';
 import Board from '@/components/Board';
 import UserProfile from '@/components/UserProfile';
+import ActivatePage from '@/components/ActivatePage';
 
 
 Vue.use(VueRouter);
@@ -43,7 +44,13 @@ export default new VueRouter({
         {
             path: '/profile',
             name: 'profile',
-            component: UserProfile
+            component: UserProfile,
+
+        },
+        {
+            path: '/activate',
+            name: 'activate',
+            component: ActivatePage
         }
     ]
 });

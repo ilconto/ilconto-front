@@ -20,7 +20,7 @@
           name="password"
           id="login-password-field"
           class="welcome-form-field"
-          placeholder="your password.."
+          placeholder="your password..."
         />
       </div>
       <button @click.prevent="login" class="submit-button button is-size-4">Log in</button>
