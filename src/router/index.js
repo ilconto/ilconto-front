@@ -31,9 +31,9 @@ export default new VueRouter({
             }
         },
         {
-            path: '/board',
+            path: '/board/:boardId',
             name: 'board',
-            component: Board
+            component: Board,
         },
         {
             path: '/createboard',
@@ -47,3 +47,6 @@ export default new VueRouter({
         }
     ]
 });
+
+
+// use beforeRouteUpdate

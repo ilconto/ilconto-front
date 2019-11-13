@@ -12,13 +12,13 @@
 
 <script>
 export default {
-  props: ["title"],
+  props: ["title","boardId"],
   data() {
     return {};
   },
   methods: {
     showDetails() {
-      this.$router.push("/board");
+      this.$router.push({path:`/board/${this.boardId}`} );
     }
   }
 };

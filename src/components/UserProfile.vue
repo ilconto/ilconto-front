@@ -4,10 +4,10 @@
     <div class="is-title">Welcome, {{this.$session.get("username")}}</div>
     <div id="board-list">
       <BoardListItem
-        v-for="(item, id) in this.$session.get('boards')"
+        v-for="(item, id) in this.boards"
         v-bind:title="item.board.title"
+        v-bind:boardId="item.board.id"
         v-bind:key="id"
-        v-on:boardCreated
       />
       <button class="submit-button button is-size-4" @click="goToCreateBoardForm">Create a new board</button>
     </div>
@@ -21,28 +21,6 @@ import axios from "axios";
 import Header from "./Header";
 import BoardListItem from "./BoardListItem";
 
-function getBoardList(window) {
-  axios({
-    method: "get",
-    baseURL: process.env.VUE_APP_ROOT_API,
-    url: "/profile/",
-    json: true,
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${window.$session.get("token")}`
-    }
-  })
-    .then(response => {
-      window.$session.set("username", response.data.username);
-      window.$session.set("email", response.data.email);
-
-      window.$session.set("boards", response.data.memberships);
-      console.log(window.$session.get("boards"));
-    })
-    .catch(e => {
-      console.log(e);
-    });
-}
 
 export default {
   components: { Header, BoardListItem },
@@ -50,17 +28,37 @@ export default {
     return {
       username: "",
       boards: [],
-      justCreatedNewBoard: { default: "false" }
+      // justCreatedNewBoard: { default: "false" }
     };
-  },
-  beforeCreate() {
-    getBoardList(this);
   },
   methods: {
     goToCreateBoardForm() {
       this.$router.push("/createboard");
+    },
+    getBoardList() {
+      axios({
+        method: "get",
+        baseURL: process.env.VUE_APP_ROOT_API,
+        url: "/profile/",
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${this.$session.get("token")}`
+        }
+      })
+      .then(response => {
+        this.$session.set("username", response.data.username);
+        this.$session.set("email", response.data.email);
+        this.boards = response.data.memberships; 
+      })
+      .catch(e => {
+        console.log(e);
+      });
     }
-  }
+  },
+  beforeMount() {
+    this.getBoardList();
+  },
 };
 </script>
 
