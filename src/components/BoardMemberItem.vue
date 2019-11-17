@@ -1,13 +1,10 @@
 <template>
   <div class="member">
-    <p class="member-username">
-      {{username}}
-    </p>
+    <h2 class="member-username">
+      {{user.username}}
+    </h2>
     <p class="member-delay">
-      {{readableDelay}}
-    </p>
-    <p class="member-rank">
-      {{rank}}
+      {{formatTime(user.score)}}
     </p>
   </div>
 </template>
@@ -15,21 +12,14 @@
 <script>
 
 import moment from 'moment'
+import {utcTimeToRelativeDays, utcTimeToRelativeSeconds, secondsToDays} from "../utils"
 
 export default {
   name: "BoardMember",
   props: {
-    username: {
-      type: String,
-      required: true,
-    },
-    delay: {
-      type: Number,
-      required: true,
-    },
-    rank: {
-      type: Number,
-      required: true,
+    user: {
+      type: Object,
+      required: true
     }
   },
 
@@ -40,7 +30,9 @@ export default {
   },
 
   methods: {
-
+      formatTime(seconds) {
+      return secondsToDays(utcTimeToRelativeSeconds(seconds))
+    }
     // confirmReset() {
     //   var boardID = this.boardID;
     //   this.$dialog.confirm({
@@ -85,5 +77,6 @@ export default {
   padding: 0.5em;
   box-sizing: border-box;
   border-radius: 10px;
+  opacity: 0.7;
 }
 </style>

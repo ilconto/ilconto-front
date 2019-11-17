@@ -3,20 +3,37 @@
     <p>
       <span class="is-size-1">{{title}}</span>
     </p>
+    <b-tabs v-model="activeTab" class="is-primary">
+      <b-tab-item label="View board">
+
+
+        <BoardMemberItem
+        v-for="(item, id) in this.members"
+        v-bind:user="item"
+        v-bind:key="id"
+      />
+      </b-tab-item>
+      <b-tab-item label="Settings">
+      </b-tab-item>
+
+    </b-tabs>
+
+
     
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import BoardMemberItem from "./BoardMemberItem";
 
 
 export default {
-
+  components: { BoardMemberItem },
   data() {
     return {
-      title: ""
+      title: "",
+      members: [],
     };
   },
   methods: {
@@ -32,11 +49,13 @@ export default {
       })
       .then(response => {
         this.title = response.data.title;
+        this.members = response.data.members;
       })
       .catch(e => {
         console.log(e)
       })
-    }
+    },
+    
   },
   beforeMount() {
     this.get_board_details();
