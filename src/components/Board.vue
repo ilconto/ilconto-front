@@ -1,7 +1,7 @@
 <template>
   <div class="container item">
     <p>
-      <span>{{title}}</span>
+      <span class="is-size-1">{{title}}</span>
     </p>
     
   </div>
