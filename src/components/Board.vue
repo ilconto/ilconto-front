@@ -19,7 +19,7 @@
     </b-tabs>
 
 
-    
+    <b-button class="is-left is-primary">Back to my boards</b-button>
   </div>
 </template>
 
