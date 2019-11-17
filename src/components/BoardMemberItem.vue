@@ -1,11 +1,11 @@
 <template>
-  <div class="member">
-    <h2 class="member-username">
+  <div class="member level">
+    <div class="member-username level-item">
       {{user.username}}
-    </h2>
-    <p class="member-delay">
+    </div>
+    <div class="member-delay level-item has-text-primary-light has-background-primary-light">
       {{formatTime(user.score)}}
-    </p>
+    </div>
   </div>
 </template>
 
@@ -78,5 +78,8 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
   opacity: 0.7;
+}
+.member-delay {
+  /* color: var(--primary) */
 }
 </style>

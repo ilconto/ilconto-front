@@ -1,12 +1,10 @@
 <template>
-  <div class="container item">
-    <p>
-      <span>{{title}}</span> -
-      <span>Score</span> -
-      <span>
-        <b-button @click="showDetails">View</b-button>
-      </span>
-    </p>
+  <div class="level item">
+      <div class="level-left">{{title}}</div>
+
+      <div class="level-right">
+        <b-button @click="showDetails" class="is-primary is-large">View</b-button>
+      </div>
   </div>
 </template>
 
