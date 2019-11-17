@@ -28,7 +28,6 @@ export default {
     return {
       username: "",
       boards: [],
-      // justCreatedNewBoard: { default: "false" }
     };
   },
   methods: {
