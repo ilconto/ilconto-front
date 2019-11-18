@@ -23,7 +23,7 @@
           placeholder="your password.."
         />
       </div>
-      <button @click.prevent="login" class="submit-button button is-size-4">Log in</button>
+      <v-btn @click.prevent="login" class="submit-button button is-size-4" color="primary">Log in</v-btn>
     </form>
     <form action class="welcome-form" id="register-form" v-if="action === 'register'">
       <div class="field-container">
@@ -70,8 +70,17 @@
           placeholder="please confirm your password"
         />
       </div>
-      <button @click.prevent="register" class="submit-button button is-size-4">Create account</button>
+      <v-btn color="primary" @click.prevent="register" class="submit-button button is-size-4">Create account</v-btn>
     </form>
+
+    <v-alert :value="login_error" transition="scale-transition" type="error">
+      <p>Could not log you in, please try again</p>
+    </v-alert>
+
+    <v-alert :value="register_error" transition="scale-transition" type="error">
+      <p>Could not register your account, please try again</p>
+    </v-alert>
+
   </div>
 </template>
 
@@ -92,7 +101,9 @@ export default {
       password: "",
       username: "",
       password1: "",
-      password2: ""
+      password2: "",
+      login_error: false,
+      register_error: false
     };
   },
   methods: {
@@ -113,17 +124,10 @@ export default {
           this.$router.push("/profile");
         })
         .catch(e => {
-          this.$snackbar.open({
-            message: "Could not log you in. Please try again",
-            type: "is-warning",
-            position: "is-bottom",
-            actionText: "create an account",
-            queue: false,
-            duration: 5000,
-            onAction: () => {
-              this.$router.push("/signin");
-            }
-          });
+          this.login_error = true;
+          setTimeout(()=>{
+            this.login_error=false
+          },5000)
 
           this.email = "";
           this.password = "";
@@ -148,18 +152,10 @@ export default {
           this.$router.push("/profile");
         })
         .catch(e => {
-          this.$snackbar.open({
-            message: "Could not create account. Please try again",
-            type: "is-warning",
-            position: "is-bottom",
-            actionText: "create an account",
-            queue: false,
-            duration: 5000,
-            onAction: () => {
-              this.$router.push("/signin");
-            }
-          });
-
+          this.register_error = true;
+          setTimeout(()=>{
+            this.register_error=false
+          },5000)
           this.email = "";
           this.username = "";
           this.password1 = "";
