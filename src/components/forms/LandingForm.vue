@@ -26,51 +26,60 @@
       <v-btn @click.prevent="login" large color="secondary">Log in</v-btn>
     </form>
     <form action class="welcome-form" id="register-form" v-if="action === 'register'">
-      <div class="field-container">
-        <p>Email address</p>
-        <input
-          v-model="email"
-          type="email"
-          name="email"
-          id="register-email-field"
-          class="welcome-form-field"
-          placeholder="example@email.com"
-        />
-      </div>
-      <div class="field-container">
-        <p>Username</p>
-        <input
-          v-model="username"
-          type="text"
-          name="username"
-          id="register-username-field"
-          class="welcome-form-field"
-          placeholder="username"
-        />
-      </div>
-      <div class="field-container">
-        <p>Password</p>
-        <input
-          v-model="password1"
-          type="password"
-          name="password1"
-          id="register-password1-field"
-          class="welcome-form-field"
-          placeholder="password"
-        />
-      </div>
-      <div class="field-container">
-        <p>Confirm password</p>
-        <input
-          v-model="password2"
-          type="password"
-          name="password2"
-          id="register-password2-field"
-          class="welcome-form-field"
-          placeholder="please confirm your password"
-        />
-      </div>
+      <v-container>
+        <v-layout row>
+          <v-flex md6>
+            <div class="field-container">
+            <p>Email address</p>
+            <input
+              v-model="email"
+              type="email"
+              name="email"
+              id="register-email-field"
+              class="welcome-form-field"
+              placeholder="example@email.com"
+            />
+          </div>
+          <div class="field-container">
+            <p>Username</p>
+            <input
+              v-model="username"
+              type="text"
+              name="username"
+              id="register-username-field"
+              class="welcome-form-field"
+              placeholder="username"
+            />
+          </div>
         </v-flex>
+        <v-flex md6>
+          <div class="field-container">
+            <p>Password</p>
+            <input
+              v-model="password1"
+              type="password"
+              name="password1"
+              id="register-password1-field"
+              class="welcome-form-field"
+              placeholder="password"
+            />
+          </div>
+          <div class="field-container">
+            <p>Confirm password</p>
+            <input
+              v-model="password2"
+              type="password"
+              name="password2"
+              id="register-password2-field"
+              class="welcome-form-field"
+              placeholder="please confirm your password"
+            />
+          </div>
+        </v-flex>
+      </v-layout>
+        
+      </v-container>
+      
       <v-btn color="secondary" @click.prevent="register" large>Create account</v-btn>
     </form>
 
