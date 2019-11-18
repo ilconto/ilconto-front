@@ -23,7 +23,7 @@
           placeholder="your password.."
         />
       </div>
-      <v-btn @click.prevent="login" class="submit-button button is-size-4" color="primary">Log in</v-btn>
+      <v-btn @click.prevent="login" large color="secondary">Log in</v-btn>
     </form>
     <form action class="welcome-form" id="register-form" v-if="action === 'register'">
       <div class="field-container">
@@ -70,7 +70,8 @@
           placeholder="please confirm your password"
         />
       </div>
-      <v-btn color="primary" @click.prevent="register" class="submit-button button is-size-4">Create account</v-btn>
+        </v-flex>
+      <v-btn color="secondary" @click.prevent="register" large>Create account</v-btn>
     </form>
 
     <v-alert :value="login_error" transition="scale-transition" type="error">
