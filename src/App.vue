@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <div id="app">
-    <router-view></router-view>
-  </div>
+      <router-view></router-view>
+    </div>
   </v-app>
   
 </template>
@@ -31,7 +31,6 @@ export default {
   .container {
     display: flex;
     flex-flow: column nowrap;
-    // justify-content: center;
   }
 
   ::placeholder {
@@ -42,14 +41,6 @@ export default {
     color: var(--primary-light);
     border-color: var(--primary-light) !important;
   }
-  .page-header {
-    @media (min-width: 1000px) {
-      margin-top: 5em;
-      margin-bottom: 2em;
-    }
-    @media (max-width: 1000px) {
-      margin-top: 2em;
-    }
-  }
+
 }
 </style>

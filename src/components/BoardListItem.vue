@@ -3,7 +3,7 @@
       <div class="level-left">{{title}}</div>
 
       <div class="level-right">
-        <b-button @click="showDetails" class="is-primary is-large">View</b-button>
+        <v-btn @click="showDetails" color="primary" x-large>View</v-btn>
       </div>
   </div>
 </template>
