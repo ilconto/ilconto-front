@@ -4,14 +4,13 @@ import App from './App.vue'
 import VueSession from 'vue-session'
 Vue.use(VueSession)
 
-import Buefy from 'buefy'
-
-Vue.use(Buefy)
+import vuetify from './plugins/vuetify'
 
 
 Vue.config.productionTip = false
 
 
 new Vue({
+    vuetify,
     render: h => h(App),
 }).$mount('#app')
