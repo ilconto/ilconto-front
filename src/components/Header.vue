@@ -33,7 +33,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
 
 .application-title {
-  margin: 1em auto 0 auto;
+  margin-top: 0.5em;
   font-size: 4em;
   font-weight: bold;
   font-family: "Lobster", cursive;

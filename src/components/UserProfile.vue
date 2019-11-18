@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="profile-page">
     <Header :subtitle="false" />
-    <div class="is-title">Welcome, {{this.$session.get("username")}}</div>
+    <div class="is-title">Welcome, {{this.$session.get("username")}}<br>Here are your boards :</div>
     <div id="board-list">
       <BoardListItem
         v-for="(item, id) in this.boards"
@@ -9,8 +9,9 @@
         v-bind:boardId="item.board.id"
         v-bind:key="id"
       />
-      <button class="submit-button button is-size-4" @click="goToCreateBoardForm">Create a new board</button>
+     
     </div>
+     <v-btn @click="goToCreateBoardForm" color="secondary" id="create-btn">Create a new board</v-btn>
   </div>
 </template>
 
@@ -67,8 +68,30 @@ export default {
   text-align: center;
 }
 #board-list {
-  margin: 3em;
-  height: 80vh;
+  height: 60vh;
   overflow: auto;
+  // border-style: solid;
+  // border-color: var(--primary-light);
+  // border-radius: 20px;
+  // border-width: 1px;
+  padding: 0.5em;
+  @media (min-width: 1000px) {
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em; 
+    margin-bottom: 2em;
+    
+  }
+  @media (max-width: 1000px) {
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+  }
+}
+
+#create-btn {
+  margin-left: 3em;
+  margin-right: 3em;
 }
 </style>
