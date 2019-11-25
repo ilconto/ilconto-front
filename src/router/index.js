@@ -10,17 +10,26 @@ import UserProfile from '@/components/UserProfile';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
     routes: [{
             path: '/',
             name: 'root',
             component: LandingPage,
+            props: {
+                action: 'login'
+            },
+            meta: {
+                title: "Ilconto | login"
+            }
         }, {
             path: '/login',
             name: 'login',
             component: LandingPage,
             props: {
                 action: 'login'
+            },
+            meta: {
+                title: "Ilconto | login"
             }
         }, {
             path: '/register',
@@ -28,25 +37,44 @@ export default new VueRouter({
             component: LandingPage,
             props: {
                 action: 'register'
+            },
+            meta: {
+                title: "Ilconto | register"
             }
         },
         {
             path: '/board/:boardId',
             name: 'board',
             component: Board,
+            meta: {
+                title: "Ilconto | board"
+            }
         },
         {
             path: '/createboard',
             name: 'createboard',
-            component: CreateBoard
+            component: CreateBoard,
+            meta: {
+                title: "Ilconto | create a board"
+            }
         },
         {
             path: '/profile',
             name: 'profile',
-            component: UserProfile
+            component: UserProfile,
+            meta: {
+                title: "Ilconto | profile"
+            }
         }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
+    next()
+})
+
+export default router;
 
 
 // use beforeRouteUpdate
