@@ -1,27 +1,39 @@
 <template>
-  <div class="container item">
+  <div class="container">
     <p>
       <span class="is-size-1">{{title}}</span>
     </p>
-    <b-tabs v-model="activeTab" class="is-primary">
-      <b-tab-item label="View board">
+
+    <BoardMemberItem v-for="(item,id) in this.members" v-bind:user="item" v-bind:key="id"></BoardMemberItem>
+
+    <v-btn class="btns" @click=";" color="secondary">Invite new member</v-btn>
+    
+    <v-btn class="btns" @click="go_back_to_profile" color="primary">Back to my boards</v-btn>
 
 
-        <BoardMemberItem
-        v-for="(item, id) in this.members"
-        v-bind:user="item"
-        v-bind:key="id"
-      />
-      </b-tab-item>
-      <b-tab-item label="Settings">
-      </b-tab-item>
-
-    </b-tabs>
-
-
-    <b-button class="is-left is-primary">Back to my boards</b-button>
   </div>
 </template>
+
+<style lang="scss" scoped>
+
+
+.btns {
+  margin-top: 2em;
+}
+.board {
+  background: url("../assets/background-3.svg");
+  font-size: 2em;
+
+}
+.tab-header {
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+}
+
+.tab-content {
+}
+</style>
+
 
 <script>
 import axios from "axios";
@@ -32,6 +44,8 @@ export default {
   components: { BoardMemberItem },
   data() {
     return {
+      tab:null,
+      tabs: 2,
       title: "",
       members: [],
     };
@@ -55,6 +69,9 @@ export default {
         console.log(e)
       })
     },
+    go_back_to_profile() {
+      this.$router.go(-1);
+    }
     
   },
   beforeMount() {
@@ -62,3 +79,4 @@ export default {
   }
 };
 </script>
+
