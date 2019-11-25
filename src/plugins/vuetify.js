@@ -11,6 +11,9 @@ export default new Vuetify({
             light: {
                 secondary: colors.amber.darken3
             }
+        },
+        options: {
+            customProperties: true
         }
     }
 });
