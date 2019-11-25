@@ -17,12 +17,12 @@
     </div>
     <div class="btn-group container">
       <p>
-        <b-button @click="login" class="is-primary">Login</b-button>
+        <v-btn @click="login" class="is-primary">Login</v-btn>
       </p>
       <p id="or" class="marker">Or</p>
       <p id="back">
         <router-link :to="{name:'root'}">
-          <b-button type="is-info">Back</b-button>
+          <v-btn type="is-info">Back</v-btn>
         </router-link>
       </p>
     </div>
