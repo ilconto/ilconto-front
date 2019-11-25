@@ -1,13 +1,43 @@
 <template>
-  <div class="member level">
-    <div class="member-username level-item">
+<v-container>
+    <v-layout row class="member">
+    <v-flex md6 class="member-username">
       {{user.username}}
-    </div>
-    <div class="member-delay level-item has-text-primary-light has-background-primary-light">
+    </v-flex>
+    <v-flex md6 class="member-delay" color="secondary">
       {{formatTime(user.score)}}
-    </div>
-  </div>
+    </v-flex>
+    <v-if>
+      <v-btn id="reset-btn" color="warning">Reset</v-btn>
+    </v-if>
+    
+  </v-layout>
+  
+</v-container>
+
 </template>
+
+<style scoped>
+.member {
+  display: flex;
+  font-size: 1.5em;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 10px;
+}
+.member-delay {
+  color: var(--v-secondary-base)
+}
+#reset-btn {
+  width: 2em;
+}
+</style>
+
+
 
 <script>
 
@@ -64,22 +94,4 @@ export default {
 };
 </script>
 
-<style >
-.member {
-  display: flex;
-  flex-flow: row nowrap;
-  position: relative;
-  width: 80%;
-  margin: 1.2em auto;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  justify-content: space-between;
-  padding: 0.5em;
-  box-sizing: border-box;
-  border-radius: 10px;
-  opacity: 0.7;
-}
-.member-delay {
-  /* color: var(--primary) */
-}
-</style>
+
