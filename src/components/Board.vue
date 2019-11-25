@@ -6,7 +6,39 @@
 
     <BoardMemberItem v-for="(item,id) in this.members" v-bind:user="item" v-bind:key="id"></BoardMemberItem>
 
-    <v-btn class="btns" @click=";" color="secondary">Invite new member</v-btn>
+
+    <v-dialog v-model="dialog">
+      <template v-slot:activator="{ on }">
+        <v-btn class="btns" v-on="on" color="secondary">Invite new member</v-btn>
+      </template>
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Invite a new member
+        </v-card-title>
+
+        <v-card-text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+
+    </v-dialog>
+    
     
     <v-btn class="btns" @click="go_back_to_profile" color="primary">Back to my boards</v-btn>
 
@@ -25,13 +57,6 @@
   font-size: 2em;
 
 }
-.tab-header {
-  border-top-left-radius: 0.2em;
-  border-top-right-radius: 0.2em;
-}
-
-.tab-content {
-}
 </style>
 
 
@@ -44,8 +69,7 @@ export default {
   components: { BoardMemberItem },
   data() {
     return {
-      tab:null,
-      tabs: 2,
+      dialog: false,
       title: "",
       members: [],
     };

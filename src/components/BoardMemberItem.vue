@@ -7,9 +7,9 @@
     <v-flex md6 class="member-delay" color="secondary">
       {{formatTime(user.score)}}
     </v-flex>
-    <v-if>
-      <v-btn id="reset-btn" color="warning">Reset</v-btn>
-    </v-if>
+    <!-- <v-if> -->
+      <v-btn id="reset-btn" @click=";" color="warning">Reset</v-btn>
+    <!-- </v-if> -->
     
   </v-layout>
   
@@ -62,33 +62,33 @@ export default {
   methods: {
       formatTime(seconds) {
       return secondsToDays(utcTimeToRelativeSeconds(seconds))
-    }
-    // confirmReset() {
-    //   var boardID = this.boardID;
-    //   this.$dialog.confirm({
-    //     title: "Resetting your score",
-    //     message:
-    //       "Are you sure you want to <b>reset</b> your score? This action cannot be undone.",
-    //     confirmText: "Reset score",
-    //     type: "is-danger",
-    //     hasIcon: true,
-    //     onConfirm: () => {
-    //       this.score = computeScore(Date.now() / 1000);
-    //       axios({
-    //         method: "patch",
-    //         baseURL: process.env.VUE_APP_ROOT_API,
-    //         url: `/boards/${boardID}/reset/${this.$session.get("user").id}`
-    //       })
-    //         .then(response => {})
-    //         .catch(error => {
-    //           this.score = computeScore(this.member.last_time); // abort modification if request failed
-    //           console.log(error);
-    //         });
-    //     }
-    //   });
-    // }
-  },
-  mounted() {
+    },
+  //   confirmReset() {
+  //     var boardID = this.boardID;
+  //     this.$dialog.confirm({
+  //       title: "Resetting your score",
+  //       message:
+  //         "Are you sure you want to <b>reset</b> your score? This action cannot be undone.",
+  //       confirmText: "Reset score",
+  //       type: "is-danger",
+  //       hasIcon: true,
+  //       onConfirm: () => {
+  //         this.score = computeScore(Date.now() / 1000);
+  //         axios({
+  //           method: "patch",
+  //           baseURL: process.env.VUE_APP_ROOT_API,
+  //           url: `/boards/${boardID}/reset/${this.$session.get("user").id}`
+  //         })
+  //           .then(response => {})
+  //           .catch(error => {
+  //             this.score = computeScore(this.member.last_time); // abort modification if request failed
+  //             console.log(error);
+  //           });
+  //       }
+  //     });
+  //   }
+  // },
+  // mounted() {
     
   }
 };
