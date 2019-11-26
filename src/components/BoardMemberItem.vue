@@ -28,6 +28,7 @@
   box-sizing: border-box;
   border-style: solid;
   border-radius: 10px;
+  margin: auto;
 }
 .member-delay {
   color: var(--v-secondary-base)
