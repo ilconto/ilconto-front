@@ -3,36 +3,39 @@
     <Header />
     <p class="switch-message">
       You can also
-      <router-link :to="nextAction">{{nextAction}}</router-link>
+      <a color="primary" @click="changeAction">{{
+        register ? "register" : "login"
+      }}</a>
     </p>
-    <LandingForm :action="action" />
+    <LoginForm v-if="register"></LoginForm>
+    <RegisterForm v-else></RegisterForm>
   </div>
 </template>
 
 <script>
 import Header from "./Header";
-import LandingForm from "./forms/LandingForm";
+import LoginForm from "./forms/LoginForm";
+import RegisterForm from "./forms/RegisterFrom";
 
 export default {
   name: "landing-page",
+  data() {
+    return {
+      register: false
+    };
+  },
   components: {
     Header,
-    LandingForm
+    LoginForm,
+    RegisterForm
   },
-  props: {
-    action: {
-      type: String,
-      default: "login"
-    }
-  },
-  computed: {
-    nextAction: function() {
-      return this.action == "login" ? "register" : "login";
+  methods: {
+    changeAction() {
+      this.register = !this.register;
     }
   }
 };
 </script>
-
 
 <style>
 .switch-message {
