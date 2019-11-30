@@ -54,7 +54,11 @@
         </v-layout>
       </v-container>
 
-      <v-btn color="secondary" @click.prevent="register" large disabled
+      <v-btn
+        color="secondary"
+        @click.prevent="register"
+        large
+        v-bind:disabled="!isComplete"
         >Create account</v-btn
       >
     </form>
@@ -108,6 +112,16 @@ export default {
           this.password1 = "";
           this.password2 = "";
         });
+    }
+  },
+  computed: {
+    isComplete: function() {
+      return (
+        this.email.length &&
+        this.username.length &&
+        this.password1.length &&
+        this.password1 === this.password2
+      );
     }
   }
 };
