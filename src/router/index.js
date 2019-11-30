@@ -19,27 +19,7 @@ const router = new VueRouter({
                 action: 'login'
             },
             meta: {
-                title: "Ilconto | login"
-            }
-        }, {
-            path: '/login',
-            name: 'login',
-            component: LandingPage,
-            props: {
-                action: 'login'
-            },
-            meta: {
-                title: "Ilconto | login"
-            }
-        }, {
-            path: '/register',
-            name: 'register',
-            component: LandingPage,
-            props: {
-                action: 'register'
-            },
-            meta: {
-                title: "Ilconto | register"
+                title: "login"
             }
         },
         {
@@ -47,7 +27,7 @@ const router = new VueRouter({
             name: 'board',
             component: Board,
             meta: {
-                title: "Ilconto | board"
+                title: "board"
             }
         },
         {
@@ -55,7 +35,7 @@ const router = new VueRouter({
             name: 'createboard',
             component: CreateBoard,
             meta: {
-                title: "Ilconto | create a board"
+                title: "create a board"
             }
         },
         {
@@ -63,14 +43,14 @@ const router = new VueRouter({
             name: 'profile',
             component: UserProfile,
             meta: {
-                title: "Ilconto | profile"
+                title: "profile"
             }
         }
     ]
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title
+    document.title = `Ilconto | ${to.meta.title}`
     next()
 })
 
