@@ -23,7 +23,13 @@
           placeholder="your password.."
         />
       </div>
-      <v-btn @click.prevent="login" large color="secondary">Log in</v-btn>
+      <v-btn
+        @click.prevent="login"
+        large
+        v-bind:disabled="!isComplete"
+        color="secondary"
+        >Log in</v-btn
+      >
     </form>
     <v-alert :value="login_error" transition="scale-transition" type="error">
       <p>Could not log you in, please try again</p>
@@ -67,6 +73,11 @@ export default {
           this.email = "";
           this.password = "";
         });
+    }
+  },
+  computed: {
+    isComplete: function() {
+      return this.email.length && this.password.length;
     }
   }
 };

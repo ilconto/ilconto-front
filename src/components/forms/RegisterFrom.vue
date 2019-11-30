@@ -98,7 +98,6 @@ export default {
         headers: { "Content-Type": "application/json" }
       })
         .then(response => {
-          console.log(response);
           this.$session.set("token", response.data.key);
           this.$router.push("/profile");
         })
