@@ -1,14 +1,15 @@
 <template>
   <div>
-    <form class="welcome-form" id="login-form">
+    <form class="form" id="login-form">
       <div class="field-container">
         <p>Email address</p>
         <input
           v-model="email"
+          @keyup.enter="login"
           type="email"
           name="email"
           id="login-email-field"
-          class="welcome-form-field"
+          class="form-field"
           placeholder="example@email.com"
         />
       </div>
@@ -16,20 +17,15 @@
         <p>Password</p>
         <input
           v-model="password"
+          @keyup.enter="login"
           type="password"
           name="password"
           id="login-password-field"
-          class="welcome-form-field"
+          class="form-field"
           placeholder="your password.."
         />
       </div>
-      <v-btn
-        @click.prevent="login"
-        large
-        v-bind:disabled="!isComplete"
-        color="secondary"
-        >Log in</v-btn
-      >
+      <v-btn @click.prevent="login" large v-bind:disabled="!isComplete" color="secondary">Log in</v-btn>
     </form>
     <v-alert :value="login_error" transition="scale-transition" type="error">
       <p>Could not log you in, please try again</p>
@@ -50,29 +46,31 @@ export default {
   },
   methods: {
     login() {
-      var bodyFormData = new FormData();
-      bodyFormData.set("email", this.email);
-      bodyFormData.set("password", this.password);
-      axios({
-        method: "post",
-        baseURL: process.env.VUE_APP_ROOT_API,
-        url: "/rest-auth/login/",
-        data: bodyFormData,
-        json: true,
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(response => {
-          this.$session.set("token", response.data.key);
-          this.$router.push("/profile");
+      if (this.isComplete) {
+        var bodyFormData = new FormData();
+        bodyFormData.set("email", this.email);
+        bodyFormData.set("password", this.password);
+        axios({
+          method: "post",
+          baseURL: process.env.VUE_APP_ROOT_API,
+          url: "/rest-auth/login/",
+          data: bodyFormData,
+          json: true,
+          headers: { "Content-Type": "application/json" }
         })
-        .catch(e => {
-          this.login_error = true;
-          setTimeout(() => {
-            this.login_error = false;
-          }, 5000);
-          this.email = "";
-          this.password = "";
-        });
+          .then(response => {
+            this.$session.set("token", response.data.key);
+            this.$router.push("/profile");
+          })
+          .catch(e => {
+            this.login_error = true;
+            setTimeout(() => {
+              this.login_error = false;
+            }, 5000);
+            this.email = "";
+            this.password = "";
+          });
+      }
     }
   },
   computed: {

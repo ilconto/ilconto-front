@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form action class="welcome-form" id="register-form">
+    <form action class="form" id="register-form">
       <v-container>
         <v-layout row>
           <v-flex md6>
@@ -8,10 +8,11 @@
               <p>Email address</p>
               <input
                 v-model="email"
+                @keyup.enter="register"
                 type="email"
                 name="email"
                 id="register-email-field"
-                class="welcome-form-field"
+                class="form-field"
                 placeholder="example@email.com"
               />
             </div>
@@ -19,10 +20,11 @@
               <p>Username</p>
               <input
                 v-model="username"
+                @keyup.enter="register"
                 type="text"
                 name="username"
                 id="register-username-field"
-                class="welcome-form-field"
+                class="form-field"
                 placeholder="username"
               />
             </div>
@@ -32,10 +34,11 @@
               <p>Password</p>
               <input
                 v-model="password1"
+                @keyup.enter="register"
                 type="password"
                 name="password1"
                 id="register-password1-field"
-                class="welcome-form-field"
+                class="form-field"
                 placeholder="password"
               />
             </div>
@@ -43,10 +46,11 @@
               <p>Confirm password</p>
               <input
                 v-model="password2"
+                @keyup.enter="register"
                 type="password"
                 name="password2"
                 id="register-password2-field"
-                class="welcome-form-field"
+                class="form-field"
                 placeholder="please confirm your password"
               />
             </div>
@@ -59,8 +63,7 @@
         @click.prevent="register"
         large
         v-bind:disabled="!isComplete"
-        >Create account</v-btn
-      >
+      >Create account</v-btn>
     </form>
 
     <v-alert :value="register_error" transition="scale-transition" type="error">
@@ -84,33 +87,35 @@ export default {
   },
   methods: {
     register() {
-      var bodyFormData = new FormData();
-      bodyFormData.set("email", this.email);
-      bodyFormData.set("username", this.username);
-      bodyFormData.set("password1", this.password1);
-      bodyFormData.set("password2", this.password2);
-      axios({
-        method: "post",
-        baseURL: process.env.VUE_APP_ROOT_API,
-        url: "/rest-auth/registration/",
-        data: bodyFormData,
-        json: true,
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(response => {
-          this.$session.set("token", response.data.key);
-          this.$router.push("/profile");
+      if (this.isComplete) {
+        var bodyFormData = new FormData();
+        bodyFormData.set("email", this.email);
+        bodyFormData.set("username", this.username);
+        bodyFormData.set("password1", this.password1);
+        bodyFormData.set("password2", this.password2);
+        axios({
+          method: "post",
+          baseURL: process.env.VUE_APP_ROOT_API,
+          url: "/rest-auth/registration/",
+          data: bodyFormData,
+          json: true,
+          headers: { "Content-Type": "application/json" }
         })
-        .catch(e => {
-          this.register_error = true;
-          setTimeout(() => {
-            this.register_error = false;
-          }, 5000);
-          this.email = "";
-          this.username = "";
-          this.password1 = "";
-          this.password2 = "";
-        });
+          .then(response => {
+            this.$session.set("token", response.data.key);
+            this.$router.push("/profile");
+          })
+          .catch(e => {
+            this.register_error = true;
+            setTimeout(() => {
+              this.register_error = false;
+            }, 5000);
+            this.email = "";
+            this.username = "";
+            this.password1 = "";
+            this.password2 = "";
+          });
+      }
     }
   },
   computed: {
@@ -147,16 +152,4 @@ export default {
 .field-container p {
   font-size: 1.4em;
 }
-
-// .submit-button {
-//   margin: auto;
-//   background-color: var(--primary-dark);
-//   border-color: var(--primary-dark) !important;
-//   color: var(--primary-light);
-// }
-
-// .submit-button:hover {
-//   color: var(--primary-light);
-//   border-color: var(--primary-light) !important;
-// }
 </style>
