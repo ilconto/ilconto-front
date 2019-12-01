@@ -4,7 +4,6 @@
       <router-view></router-view>
     </div>
   </v-app>
-  
 </template>
 
 <script>
@@ -42,5 +41,30 @@ export default {
     border-color: var(--primary-light) !important;
   }
 
+  .form {
+    width: 100%;
+    margin: 1em 0;
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+  }
+  .form-field {
+    width: 100%;
+    background: transparent;
+    padding: 0.5em 0;
+    border: 0px solid transparent;
+    border-bottom: 2px solid white;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    color: var(--primary-light);
+  }
 }
 </style>

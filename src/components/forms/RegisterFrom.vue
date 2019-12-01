@@ -127,23 +127,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.welcome-form {
-  width: 100%;
-  margin: 1em 0;
-  padding: 1em;
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.2);
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-}
-
-.welcome-form input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-}
-
 .field-container {
   padding: 0.5em;
   box-sizing: border-box;
@@ -165,30 +148,15 @@ select:focus {
   font-size: 1.4em;
 }
 
-::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
+// .submit-button {
+//   margin: auto;
+//   background-color: var(--primary-dark);
+//   border-color: var(--primary-dark) !important;
+//   color: var(--primary-light);
+// }
 
-.welcome-form-field {
-  width: 100%;
-  background: transparent;
-  padding: 0.5em 0;
-  border: 0px solid transparent;
-  border-bottom: 2px solid white;
-  box-sizing: border-box;
-  font-size: 1.2em;
-  color: var(--primary-light);
-}
-
-.submit-button {
-  margin: auto;
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark) !important;
-  color: var(--primary-light);
-}
-
-.submit-button:hover {
-  color: var(--primary-light);
-  border-color: var(--primary-light) !important;
-}
+// .submit-button:hover {
+//   color: var(--primary-light);
+//   border-color: var(--primary-light) !important;
+// }
 </style>
