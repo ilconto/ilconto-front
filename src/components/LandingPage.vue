@@ -3,11 +3,13 @@
     <Header />
     <p class="switch-message">
       You can also
-      <a color="primary" @click="changeAction">{{
+      <a color="primary" @click="changeAction">
+        {{
         register ? "register" : "login"
-      }}</a>
+        }}
+      </a>
     </p>
-    <LoginForm v-if="register"></LoginForm>
+    <LoginForm v-if="!register"></LoginForm>
     <RegisterForm v-else></RegisterForm>
   </div>
 </template>
