@@ -77,6 +77,9 @@ export default {
     isComplete: function() {
       return this.email.length && this.password.length;
     }
+  },
+  mounted() {
+    document.title = "Ilconto | login";
   }
 };
 </script>

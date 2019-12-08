@@ -127,16 +127,14 @@ export default {
         this.password1 === this.password2
       );
     }
+  },
+  mounted() {
+    document.title = "Ilconto | register";
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.field-container {
-  padding: 0.5em;
-  box-sizing: border-box;
-}
-
 #login-form .field-container {
   margin-bottom: 2em;
 }
