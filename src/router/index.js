@@ -18,9 +18,6 @@ const router = new VueRouter({
             props: {
                 action: 'login'
             },
-            meta: {
-                title: "login"
-            }
         },
         {
             path: '/board/:boardId',
