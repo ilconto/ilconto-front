@@ -1,7 +1,10 @@
 <template>
   <div class="container" id="profile-page">
     <Header :subtitle="false" />
-    <div class="is-title">Welcome, {{this.$session.get("username")}}<br>Here are your boards :</div>
+    <div class="is-title">
+      Welcome, {{this.$session.get("username")}}
+      <br />Here are your boards :
+    </div>
     <div id="board-list">
       <BoardListItem
         v-for="(item, id) in this.boards"
@@ -9,9 +12,8 @@
         v-bind:boardId="item.board.id"
         v-bind:key="id"
       />
-     
     </div>
-     <v-btn @click="goToCreateBoardForm" color="secondary" id="create-btn">Create a new board</v-btn>
+    <v-btn @click="goToCreateBoardForm" color="secondary" id="create-btn">Create a new board</v-btn>
   </div>
 </template>
 
@@ -22,13 +24,12 @@ import axios from "axios";
 import Header from "./Header";
 import BoardListItem from "./BoardListItem";
 
-
 export default {
   components: { Header, BoardListItem },
   data() {
     return {
       username: "",
-      boards: [],
+      boards: []
     };
   },
   methods: {
@@ -46,19 +47,20 @@ export default {
           Authorization: `Token ${this.$session.get("token")}`
         }
       })
-      .then(response => {
-        this.$session.set("username", response.data.username);
-        this.$session.set("email", response.data.email);
-        this.boards = response.data.memberships; 
-      })
-      .catch(e => {
-        console.log(e);
-      });
+        .then(response => {
+          this.$session.set("username", response.data.username);
+          this.$session.set("email", response.data.email);
+          this.$session.set("userID", response.data.id);
+          this.boards = response.data.memberships;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   },
   beforeMount() {
     this.getBoardList();
-  },
+  }
 };
 </script>
 
@@ -78,9 +80,8 @@ export default {
   @media (min-width: 1000px) {
     margin-top: 1em;
     margin-left: 3em;
-    margin-right: 3em; 
+    margin-right: 3em;
     margin-bottom: 2em;
-    
   }
   @media (max-width: 1000px) {
     margin-top: 1em;
