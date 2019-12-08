@@ -66,5 +66,10 @@ export default {
     font-size: 1.2em;
     color: var(--primary-light);
   }
+
+  .field-container {
+    padding: 0.5em;
+    box-sizing: border-box;
+  }
 }
 </style>
