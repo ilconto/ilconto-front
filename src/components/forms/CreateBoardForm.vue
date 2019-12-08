@@ -1,13 +1,13 @@
 <template>
-  <form action class="create-board-form">
+  <form action class="form">
     <div class="field-container">
       <p>Title</p>
       <input
         v-model="title"
         type="text"
         name="title"
+        class="form-field"
         id="create-board-title-field"
-        class="create-board-form-field"
         placeholder="Enter a title.."
       />
     </div>
@@ -16,7 +16,7 @@
         Members
         <span style="opacity: 0.5">(other than yourself)</span>
       </p>
-      <div class="member-container field">
+      <div class="member-container form-field">
         <input
           v-model="newMemberEmail"
           type="email"
@@ -28,7 +28,7 @@
       </div>
       <ul class="members-list">
         <li v-for="member in members" v-bind:key="member" class="member-container entered">
-          <p>{{member}}</p>
+          <p>{{ member }}</p>
           <button class="button is-danger" @click.prevent="deleteMember(member)">Delete</button>
         </li>
       </ul>
