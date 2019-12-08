@@ -5,7 +5,7 @@
       You can also
       <a color="primary" @click="changeAction">
         {{
-        register ? "register" : "login"
+        register ? "login" : "register"
         }}
       </a>
     </p>
