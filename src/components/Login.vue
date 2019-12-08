@@ -69,10 +69,9 @@ export default {
         .then(response => {
           console.log(response.data);
           this.$session.set("token", response.data.key);
-          this.$session.set("email", this.email);
-          this.$session.set("username", this.username);
+          // this.$session.set("email", this.email);
+          // this.$session.set("username", this.username);
           this.$router.push("/profile");
-          console.log(this.$session.get("token"));
         })
         .catch(e => {
           console.log(e);
